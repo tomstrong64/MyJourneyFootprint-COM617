@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "Vue.volar",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "mhutchie.git-graph",
+    "ms-azuretools.vscode-docker",
+    "beatzoid.http-status-codes"
+  ]
+}
