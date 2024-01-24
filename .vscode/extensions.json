@@ -6,6 +6,7 @@
     "mhutchie.git-graph",
     "ms-azuretools.vscode-docker",
     "beatzoid.http-status-codes",
-    "mtxr.sqltools"
+    "mtxr.sqltools",
+    "mtxr.sqltools-driver-pg"
   ]
 }
