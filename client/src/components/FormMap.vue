@@ -11,18 +11,22 @@ import L from "leaflet";
 export default {
  name: "Map",
  data() {
-   return{
-     center: [37,7749, -122,4194]
-   }},
+  return {
+    center: [37.7749, -122.4194],
+  };
+},
  methods: {
    setupLeafletMap: function () {
-     const mapDiv = L.map("mapContainer").setView(this.center, 13);
-     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{attribution: "Copyright Message"}).addTo(mapDiv)
+    console.log("Center:", this.center); // Log the center coordinates
+    const mapDiv = L.map("mapContainer").setView(this.center, 13);
+       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{attribution: "Copyright Message"}).addTo(mapDiv)
 
    },
  },
  mounted() {
-   this.setupLeafletMap();
+  this.$nextTick(() => {
+    this.setupLeafletMap();
+  });
  },
 };
 </script>
