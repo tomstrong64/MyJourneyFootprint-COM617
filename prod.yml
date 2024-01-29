@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  app:
+    image: com617:latest
+    build:
+      context: .
+      target: prod
+      dockerfile: Dockerfile
+    container_name: com617-prod
+    ports:
+      - "3000:3000"
