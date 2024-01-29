@@ -103,6 +103,7 @@ export default {
       // Add logic to handle form submission (e.g., calculate emissions)
       // Access form data using this.formData
       console.log('Form submitted', this.formData);
+      this.calculateCarbonEmission();
     },
     updateDropdownOptions() {
       // Reset the carSegment, carSize, and motorbikeType values when the travel mode changes
@@ -110,6 +111,84 @@ export default {
       this.formData.carSize = '';
       this.formData.motorbikeType = '';
     },
+    calculateCarbonEmission() {
+    var pplXdist, emissionTotal, emissionsPP;
+    // Add your logic to calculate carbon emission using this.formData
+    // For example, you can access this.formData.mode, this.formData.distance, etc.
+    // Perform calculations and update your application state accordingly
+    console.log('Calculating carbon emission...');
+    // Your emission calculation logic goes here
+
+    if (this.formData.mode == "Car (by Segment)"){
+      if (this.formData.carSegment == "Mini"){
+        if (this.formData.travelClass == "Diesel"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist * 0.10607 
+        var emissionsPP = this.formData.distance * 0.10607 
+        alert(emissionTotal)
+        } else if (this.formData.travelClass == "Petrol"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist *   0.12962 
+        var emissionsPP = this.formData.distance *   0.12962 
+        alert(emissionTotal)
+        } else if (this.formData.travelClass == "Unknown"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist *   0.12942 
+        var emissionsPP = this.formData.distance *   0.12942 
+        alert(emissionTotal)
+        } else if (this.formData.travelClass == "Plug-in Hybrid"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist * 0.10607 
+        var emissionsPP = this.formData.distance * 0.10607 
+        alert(emissionTotal)
+        } else if (this.formData.travelClass == "Electric"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist * 0.10607 
+        var emissionsPP = this.formData.distance * 0.10607 
+        alert(emissionTotal)
+        }
+      } else if (this.formData.carSegment == "Mini"){
+        
+      } else if (this.formData.carSegment == "Supermini"){
+        
+      } else if (this.formData.carSegment == "Lower Medium"){
+        
+      } else if (this.formData.carSegment == "Upper Medium"){
+        
+      } else if (this.formData.carSegment == "Executive"){
+        
+      } else if (this.formData.carSegment == "Luxury"){
+        
+      } else if (this.formData.carSegment == "Sports"){
+        
+      } else if (this.formData.carSegment == "Dual Purpose 4x4"){
+        
+      } else if (this.formData.carSegment == "MPV"){
+        
+      }
+    } else if (this.formData.mode == "Car (by Size)"){
+      if (this.formData.carSize == "Small"){
+        
+      } else if (this.formData.carSize == "Medium"){
+        
+      } else if (this.formData.carSize == "Large"){
+        
+      } else if (this.formData.carSize == "Average"){
+        
+      }
+
+    } else {
+      if (this.formData.carSize == "Small"){
+        
+      } else if (this.formData.carSize == "Medium"){
+        
+      } else if (this.formData.carSize == "Large"){
+        
+      } else if (this.formData.carSize == "Average"){
+        
+      }
+    }
+  },
   },
 };
 </script>
