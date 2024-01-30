@@ -66,6 +66,9 @@
 
     <button type="submit" class="calculate-button">Calculate Carbon Emissions</button>
   </form>
+  <div v-if="emissionTotal !== null">
+  <p>Carbon Emission Total: {{ emissionTotal }} kg CO2</p>
+</div>
 </template>
 <script>
 export default {
@@ -82,6 +85,7 @@ export default {
         end: '',
         distance: 0,
       },
+      emissionTotal: null
     };
   },
   computed: {
@@ -557,6 +561,7 @@ export default {
         
       }
     }
+    this.emissionTotal = emissionTotal;
   },
   },
 };
