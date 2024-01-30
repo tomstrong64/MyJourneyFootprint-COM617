@@ -138,7 +138,7 @@ export default {
         alert(emissionTotal)
         } else if (this.formData.travelClass == "Plug-in Hybrid"){
         alert("There is no car that fits this spec")
-        } else if (this.formData.travelClass == "Electric"){
+        } else if (this.formData.travelClass == "Battery Electric"){
           var pplXdist = this.formData.distance * this.formData.numPeople
         var emissionTotal = pplXdist * 0 
         var emissionsPP = this.formData.distance * 0
@@ -165,7 +165,7 @@ export default {
         var emissionTotal = pplXdist *   0.02149   
         var emissionsPP = this.formData.distance *   0.02149  
         alert(emissionTotal)
-        } else if (this.formData.travelClass == "Electric"){
+        } else if (this.formData.travelClass == "Battery Electric"){
           var pplXdist = this.formData.distance * this.formData.numPeople
         var emissionTotal = pplXdist * 0 
         var emissionsPP = this.formData.distance * 0
@@ -192,7 +192,7 @@ export default {
         var emissionTotal = pplXdist *     0.05933  
         var emissionsPP = this.formData.distance *   0.05933  
         alert(emissionTotal)
-        } else if (this.formData.travelClass == "Electric"){
+        } else if (this.formData.travelClass == " Battery Electric"){
           var pplXdist = this.formData.distance * this.formData.numPeople
         var emissionTotal = pplXdist * 0 
         var emissionsPP = this.formData.distance * 0
@@ -219,7 +219,7 @@ export default {
         var emissionTotal = pplXdist *   0.06264 
         var emissionsPP = this.formData.distance *  0.06264 
         alert(emissionTotal)
-        } else if (this.formData.travelClass == "Electric"){
+        } else if (this.formData.travelClass == "Battery Electric"){
           var pplXdist = this.formData.distance * this.formData.numPeople
         var emissionTotal = pplXdist * 0 
         var emissionsPP = this.formData.distance * 0
@@ -246,7 +246,7 @@ export default {
         var emissionTotal = pplXdist *  0.06601  
         var emissionsPP = this.formData.distance *  0.06601   
         alert(emissionTotal)
-        } else if (this.formData.travelClass == "Electric"){
+        } else if (this.formData.travelClass == "Battery Electric"){
           var pplXdist = this.formData.distance * this.formData.numPeople
         var emissionTotal = pplXdist * 0 
         var emissionsPP = this.formData.distance * 0
@@ -273,7 +273,7 @@ export default {
         var emissionTotal = pplXdist *  0.08961 
         var emissionsPP = this.formData.distance *  0.08961 
         alert(emissionTotal)
-        } else if (this.formData.travelClass == "Electric"){
+        } else if (this.formData.travelClass == "Battery Electric"){
           var pplXdist = this.formData.distance * this.formData.numPeople
         var emissionTotal = pplXdist * 0 
         var emissionsPP = this.formData.distance * 0
@@ -300,7 +300,7 @@ export default {
         var emissionTotal = pplXdist *  0.08123  
         var emissionsPP = this.formData.distance *  0.08123   
         alert(emissionTotal)
-        } else if (this.formData.travelClass == "Electric"){
+        } else if (this.formData.travelClass == "Battery Electric"){
           var pplXdist = this.formData.distance * this.formData.numPeople
         var emissionTotal = pplXdist * 0 
         var emissionsPP = this.formData.distance * 0
@@ -327,7 +327,7 @@ export default {
         var emissionTotal = pplXdist *  0.07047 
         var emissionsPP = this.formData.distance *  0.07047  
         alert(emissionTotal)
-        } else if (this.formData.travelClass == "Electric"){
+        } else if (this.formData.travelClass == "Battery Electric"){
           var pplXdist = this.formData.distance * this.formData.numPeople
         var emissionTotal = pplXdist * 0 
         var emissionsPP = this.formData.distance * 0
@@ -354,7 +354,7 @@ export default {
         var emissionTotal = pplXdist *  0.05625  
         var emissionsPP = this.formData.distance *  0.05625  
         alert(emissionTotal)
-        } else if (this.formData.travelClass == "Electric"){
+        } else if (this.formData.travelClass == "Battery Electric"){
           var pplXdist = this.formData.distance * this.formData.numPeople
         var emissionTotal = pplXdist * 0 
         var emissionsPP = this.formData.distance * 0
@@ -363,15 +363,171 @@ export default {
       }
     } else if (this.formData.mode == "Car (by Size)"){
       if (this.formData.carSize == "Small"){
-        
+        if (this.formData.travelClass == "Diesel"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist *    0.13763 
+        var emissionsPP = this.formData.distance *  0.13763 
+        alert(emissionTotal)
+        } else if (this.formData.travelClass == "Petrol"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist *  0.14012   
+        var emissionsPP = this.formData.distance *  0.14012 
+        alert(emissionTotal)
+        } else if (this.formData.travelClass == "Hybrid"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist *  0.10049 
+        var emissionsPP = this.formData.distance *  0.10049  
+        alert(emissionTotal)
+        } else if (this.formData.travelClass == "Plug-in Hybrid"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist *0.02149  
+        var emissionsPP = this.formData.distance *0.02149
+        alert(emissionTotal)
+        } else if (this.formData.travelClass == "Battery Electric"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist * 0 
+        var emissionsPP = this.formData.distance * 0
+        alert(emissionTotal)
+        }
+        else if (this.formData.travelClass == "Unknown"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist * 0.13936
+        var emissionsPP = this.formData.distance *0.13936
+        alert(emissionTotal)
+        }else if (this.formData.travelClass == "CNG"){
+        alert("No car with this spec")
+        }else if (this.formData.travelClass == "LPG"){
+          alert("No car with this spec")
+        }
       } else if (this.formData.carSize == "Medium"){
-        
+        if (this.formData.travelClass == "Diesel"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist *  0.16548  
+        var emissionsPP = this.formData.distance *  0.16548 
+        alert(emissionTotal)
+        } else if (this.formData.travelClass == "Petrol"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist *  0.17751  
+        var emissionsPP = this.formData.distance *  0.17751  
+        alert(emissionTotal)
+        } else if (this.formData.travelClass == "Hybrid"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist *  0.10783 
+        var emissionsPP = this.formData.distance *  0.10783  
+        alert(emissionTotal)
+        } else if (this.formData.travelClass == "Plug-in Hybrid"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist *0.06100
+        var emissionsPP = this.formData.distance *0.06100
+        alert(emissionTotal)
+        } else if (this.formData.travelClass == "Battery Electric"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist * 0 
+        var emissionsPP = this.formData.distance * 0
+        alert(emissionTotal)
+        }
+        else if (this.formData.travelClass == "Unknown"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist *0.17125
+        var emissionsPP = this.formData.distance *0.17125
+        alert(emissionTotal)
+        }else if (this.formData.travelClass == "CNG"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist *  0.15447
+        var emissionsPP = this.formData.distance *  0.15447
+        alert(emissionTotal)
+        }else if (this.formData.travelClass == "LPG"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist *0.17565
+        var emissionsPP = this.formData.distance *0.17565
+        alert(emissionTotal)
+        }
       } else if (this.formData.carSize == "Large"){
-        
+        if (this.formData.travelClass == "Diesel"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist *  0.20691  
+        var emissionsPP = this.formData.distance *  0.20691  
+        alert(emissionTotal)
+        } else if (this.formData.travelClass == "Petrol"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist *  0.27156   
+        var emissionsPP = this.formData.distance *  0.27156 
+        alert(emissionTotal)
+        } else if (this.formData.travelClass == "Hybrid"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist *  0.15101 
+        var emissionsPP = this.formData.distance *  0.15101  
+        alert(emissionTotal)
+        } else if (this.formData.travelClass == "Plug-in Hybrid"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist *0.07032
+        var emissionsPP = this.formData.distance *0.07032
+        alert(emissionTotal)
+        } else if (this.formData.travelClass == "Battery Electric"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist * 0 
+        var emissionsPP = this.formData.distance * 0
+        alert(emissionTotal)
+        }
+        else if (this.formData.travelClass == "Unknown"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist *0.22469
+        var emissionsPP = this.formData.distance *0.22469
+        alert(emissionTotal)
+        }else if (this.formData.travelClass == "CNG"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist *  0.23632
+        var emissionsPP = this.formData.distance *  0.23632
+        alert(emissionTotal)
+        }else if (this.formData.travelClass == "LPG"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist *0.26872
+        var emissionsPP = this.formData.distance *0.26872
+        alert(emissionTotal)
+        }
       } else if (this.formData.carSize == "Average"){
-        
+        if (this.formData.travelClass == "Diesel"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist *  0.16815  
+        var emissionsPP = this.formData.distance *  0.16815  
+        alert(emissionTotal)
+        } else if (this.formData.travelClass == "Petrol"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist *  0.16323  
+        var emissionsPP = this.formData.distance *  0.16323 
+        alert(emissionTotal)
+        } else if (this.formData.travelClass == "Hybrid"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist *  0.11781 
+        var emissionsPP = this.formData.distance *  0.11781  
+        alert(emissionTotal)
+        } else if (this.formData.travelClass == "Plug-in Hybrid"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist *0.06542
+        var emissionsPP = this.formData.distance *0.06542
+        alert(emissionTotal)
+        } else if (this.formData.travelClass == "Battery Electric"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist * 0 
+        var emissionsPP = this.formData.distance * 0
+        alert(emissionTotal)
+        }
+        else if (this.formData.travelClass == "Unknown"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist *0.16547
+        var emissionsPP = this.formData.distance *0.16547
+        alert(emissionTotal)
+        }else if (this.formData.travelClass == "CNG"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist *  0.17291
+        var emissionsPP = this.formData.distance *  0.17291
+        alert(emissionTotal)
+        }else if (this.formData.travelClass == "LPG"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist *0.19662
+        var emissionsPP = this.formData.distance *0.19662
+        alert(emissionTotal)        }
       }
-
     } else {
       if (this.formData.carSize == "Small"){
         
