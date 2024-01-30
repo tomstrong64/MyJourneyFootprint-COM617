@@ -529,13 +529,31 @@ export default {
         alert(emissionTotal)        }
       }
     } else {
-      if (this.formData.carSize == "Small"){
+      if (this.formData.motorbikeType == "Small"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist *  0.08094 
+        var emissionsPP = this.formData.distance *  0.08094 
+        alert(emissionTotal)
+      
+      } else if (this.formData.motorbikeType == "Medium"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist *  0.09826  
+        var emissionsPP = this.formData.distance *  0.09826 
+        alert(emissionTotal)
+  
+      
+      } else if (this.formData.motorbikeType == "Large"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist *  0.13072  
+        var emissionsPP = this.formData.distance *  0.13072 
+        alert(emissionTotal)
         
-      } else if (this.formData.carSize == "Medium"){
-        
-      } else if (this.formData.carSize == "Large"){
-        
-      } else if (this.formData.carSize == "Average"){
+      
+      } else if (this.formData.motorbikeType == "Average"){
+          var pplXdist = this.formData.distance * this.formData.numPeople
+        var emissionTotal = pplXdist *  0.11138
+        var emissionsPP = this.formData.distance *  0.11138  
+        alert(emissionTotal)
         
       }
     }
