@@ -7,6 +7,7 @@
     "ms-azuretools.vscode-docker",
     "beatzoid.http-status-codes",
     "mtxr.sqltools",
-    "mtxr.sqltools-driver-pg"
+    "mtxr.sqltools-driver-pg",
+    "redhat.vscode-yaml"
   ]
 }
