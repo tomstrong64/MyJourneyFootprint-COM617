@@ -15,7 +15,8 @@ export default {
       clickCount: 0,
       map: null,
       markers: [],
-      distance: null, // to store calculated distance
+      distance: null,
+      polyline:null, // to store calculated distance
     };
   },
   methods: {
@@ -56,18 +57,29 @@ export default {
     },
     clearMarkers: function () {
       this.markers.forEach(marker => this.map.removeLayer(marker));
+      if (this.polyline) {
+    this.map.removeLayer(this.polyline);
+    this.polyline = null;
+  }
       this.markers = [];
       this.distance = null; // Reset distance when markers are cleared
     },
     calculateDistance: function () {
       // Check if there are exactly two markers (start and end points)
       if (this.markers.length === 2) {
-        const startLatLng = this.markers[0].getLatLng();
-        const endLatLng = this.markers[1].getLatLng();
-        this.distance = this.haversineDistance(startLatLng, endLatLng);
-      } else {
-        alert("Please select both start and end points before calculating the distance.");
-      }
+    const startLatLng = this.markers[0].getLatLng();
+    const endLatLng = this.markers[1].getLatLng();
+    this.distance = this.haversineDistance(startLatLng, endLatLng);
+
+    // Create or update the polyline
+    if (this.polyline) {
+      this.polyline.setLatLngs([startLatLng, endLatLng]);
+    } else {
+      this.polyline = L.polyline([startLatLng, endLatLng], { color: 'red' }).addTo(this.map);
+    }
+  } else {
+    alert("Please select both start and end points before calculating the distance.");
+  }
     },
     haversineDistance: function (latlng1, latlng2) {
       const toRadians = value => (value * Math.PI) / 180;
