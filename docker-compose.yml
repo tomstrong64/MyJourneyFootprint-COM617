@@ -1,6 +1,16 @@
 version: "3.8"
 
 services:
+  db:
+    image: postgres:16.1-alpine3.19
+    container_name: com617-db
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - db:/var/libpostgresql/data
+
   server:
     image: com617-server
     build:
@@ -31,4 +41,8 @@ services:
 
 networks:
   default:
-    name: project-network
+    name: projecSt-network
+
+volumes:
+  db:
+    driver: local
