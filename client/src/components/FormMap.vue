@@ -77,6 +77,24 @@ export default {
     } else {
       this.polyline = L.polyline([startLatLng, endLatLng], { color: 'red' }).addTo(this.map);
     }
+
+    // Calculate midpoint
+    const midLatLng = L.latLng([
+      (startLatLng.lat + endLatLng.lat) / 2,
+      (startLatLng.lng + endLatLng.lng) / 2,
+    ]);
+
+    // Create or update the label icon
+    const labelText = `${this.distance.toFixed(2)} km`;
+    if (this.labelIcon) {
+      this.labelIcon.setLatLng(midLatLng).setText(labelText);
+    } else {
+      this.labelIcon = L.divIcon({
+        className: 'label-icon',
+        html: `<div>${labelText}</div>`,
+      });
+      L.marker(midLatLng, { icon: this.labelIcon }).addTo(this.map);
+    }
   } else {
     alert("Please select both start and end points before calculating the distance.");
   }
@@ -112,12 +130,22 @@ export default {
 
 <style scoped>
 #mapContainer {
-  width: 70vw;
-  height: 90vh;
+  width: 65vw;
+  height: 92vh;
   position: absolute;
 }
 
+
 button {
   margin-top: 10px;
+}
+.label-icon {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  background-color: red;
+  border-radius: 5px;
+  padding: 5px;
 }
 </style>

@@ -1,7 +1,8 @@
-
 <template>
   <div id="app">
-    <div id="form"><TravelForm /></div>
+    <h1>Calculate Carbon Emissions for Your Journey</h1>
+    <br><br><br><br><br><br>
+    <div id="form" class="section"><TravelForm /></div>
     <div id="map"><FormMap/></div>   
   </div>
 </template>
@@ -22,33 +23,27 @@ export default {
 /* Add your global styles here */
 </style>
 
-
 <style scoped>
-header {
-  line-height: 1.5;
+
+#map{
+  margin-left: 80px;
+}
+.section {
+  flex: 1; /* Make each section take up equal space */
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+#form {
+  width: 100%; /* Make sure the content inside takes full width */
+  padding: 20px;
+  margin: 10px;
+  border: 2px solid #4a60dc; /* Add border color */
+  border-radius: 8px; /* Add border radius for rounded corners */
+  background-color: rgb(95, 156, 93); /* Set background color for each section */
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+@media (max-width: 767px) {
+  #app {
+    flex-direction: column; /* Stack sections vertically on smaller screens */
   }
 }
 </style>
-
