@@ -47,29 +47,28 @@
       <option value="CNG">CNG</option>
       <option value="LPG">LPG</option>
       <option value="Unknown">Unknown</option>
-      <!-- Add more options as needed for each class -->
     </select>
 
     <label for="people">Number of People:</label>
-    <input type="number" v-model="formData.numPeople" id="people" required>
+    <input type="number" v-model="formData.numPeople" id="people" min="1" required>
 
     <label for="start">Journey Start Point (Select on Map):</label>
-    <div id="startPosForm"></div>
+    <div id="startPosForm"></div><br>
 
     <label for="end">Journey End Point (Select on Map):</label>
-    <div id="endPosForm"></div>
+    <div id="endPosForm"></div><br>
 
 
     <label for="distance">Journey Distance (in km):</label>
-    <div id="distanceCalc"></div>
+    <div id="distanceCalc"></div><br>
 
     <button type="submit" class="calculate-button">Calculate Carbon Emissions</button>
   </form>
   <div v-if="emissionTotal !== null">
   <p>Carbon Emission Total: {{ emissionTotal }} kg CO2</p>
 </div>
-<div v-if="emissionPP !== null">
-  <p>Carbon Emission Per Person: {{ emissionPP }} kg CO2</p>
+<div v-if="emissionsPP !== null">
+  <p>Carbon Emission Per Person: {{ emissionsPP }} kg CO2</p>
 </div>
 
 </template>
@@ -132,7 +131,7 @@ export default {
         if (this.formData.travelClass == "Diesel"){
           var pplXdist = this.formData.distance * this.formData.numPeople
         var emissionTotal = pplXdist * 0.10607 
-        var emissionsPP = this.formData.distance / 0.10607 
+        var emissionsPP =  0.10607 / this.formData.distance 
         
         } else if (this.formData.travelClass == "Petrol"){
           var pplXdist = this.formData.distance * this.formData.numPeople
@@ -451,7 +450,6 @@ export default {
           var pplXdist = this.formData.distance * this.formData.numPeople
         var emissionTotal = pplXdist * 0 
         var emissionsPP = this.formData.distance * 0
-        alert(emissionTotal)
         }
         else if (this.formData.travelClass == "Unknown"){
           var pplXdist = this.formData.distance * this.formData.numPeople
