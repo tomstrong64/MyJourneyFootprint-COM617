@@ -24,7 +24,9 @@
     </div>
 
     <div>
-      <p id="error-message">Please fill in all details</p>
+      <p id="error-message1" hidden>Please fill in all details</p>
+      <p id="error-message2" hidden>Username is required</p>
+      <p id="error-message3" hidden>Password is required</p>
     </div>
   </div>
 </template>
@@ -44,6 +46,7 @@ export default {
       if (this.username === 'existingUser') {
         throw new Error('Username already taken')
       }
+  
       // Simulate successful registration
       // return { status: 201 };
       this.$emit('registration-success', 'Registration successful')

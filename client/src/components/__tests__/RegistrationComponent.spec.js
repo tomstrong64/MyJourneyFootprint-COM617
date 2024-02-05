@@ -8,23 +8,23 @@ describe('RegistrationComponent', () => {
     const wrapper = mount(RegistrationComponent)
     await wrapper.find('#registerbutton').trigger('click')
     // Assert that UI warning is displayed
-    expect(wrapper.find('#error-message').text()).toContain('Please fill in all details')
+    expect(wrapper.find('#error-message1').text()).toContain('Please fill in all details')
   })
 
   it('displays UI warning when user clicks register with no username', async () => {
     const wrapper = mount(RegistrationComponent)
     // Set other details but leave username empty
-    await wrapper.find('registerbutton').trigger('click')
+    await wrapper.find('#registerbutton').trigger('click')
     // Assert that UI warning is displayed
-    expect(wrapper.text()).toContain('Username is required')
+    expect(wrapper.find('#error-message2').text()).toContain('Username is required')
   })
 
   it('displays UI warning when user clicks register with no password', async () => {
     const wrapper = mount(RegistrationComponent)
     // Set other details but leave password empty
-    await wrapper.find('registerbutton').trigger('click')
+    await wrapper.find('#registerbutton').trigger('click')
     // Assert that UI warning is displayed
-    expect(wrapper.text()).toContain('Password is required')
+    expect(wrapper.find('#error-message3').text()).toContain('Password is required')
   })
 
   it('handles 401 response when user clicks register with already used username', async () => {
@@ -48,7 +48,7 @@ describe('RegistrationComponent', () => {
     })
 
     await wrapper.setData({ username: 'existingUser', password: 'test', checkboxChecked: true })
-    await wrapper.find('registerbutton').trigger('click')
+    await wrapper.find('#registerbutton').trigger('click')
 
     // Assert that the component handles the 401 error and shows the correct UI warning
     expect(wrapper.text()).toContain('Username already taken')
@@ -72,7 +72,7 @@ describe('RegistrationComponent', () => {
     })
 
     await wrapper.setData({ username: 'newUser', password: 'test', checkboxChecked: true })
-    await wrapper.find('registerbutton').trigger('click')
+    await wrapper.find('#registerbutton').trigger('click')
 
     // Assert that the component handles the 201 response appropriately
     // For example, you might want to navigate to a new page or emit a success event
@@ -115,14 +115,14 @@ describe('RegistrationComponent', () => {
   it('displays UI warning when user clicks register without checking the box', async () => {
     const wrapper = mount(RegistrationComponent)
     await wrapper.setData({ username: 'testuser', password: 'test' })
-    await wrapper.find('registerbutton').trigger('click')
+    await wrapper.find('#registerbutton').trigger('click')
     expect(wrapper.text()).toContain('Please accept the privacy policy')
   })
 
   it('displays UI warning when user clicks register with invalid character limits', async () => {
     const wrapper = mount(RegistrationComponent)
     await wrapper.setData({ username: 'short', password: 'short', checkboxChecked: true })
-    await wrapper.find('registerbutton').trigger('click')
+    await wrapper.find('#registerbutton').trigger('click')
     expect(wrapper.text()).toContain('Username and password must meet minimum character limits')
   })
 })
