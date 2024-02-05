@@ -51,7 +51,7 @@ describe('RegistrationComponent', () => {
     await wrapper.find('#registerbutton').trigger('click')
 
     // Assert that the component handles the 401 error and shows the correct UI warning
-    expect(wrapper.text()).toContain('Username already taken')
+    expect(wrapper.find('#error-message6').text()).toContain('Username already taken')
   })
 
   it('handles 201 response when user clicks register with valid details and checkbox selected', async () => {
@@ -116,13 +116,13 @@ describe('RegistrationComponent', () => {
     const wrapper = mount(RegistrationComponent)
     await wrapper.setData({ username: 'testuser', password: 'test' })
     await wrapper.find('#registerbutton').trigger('click')
-    expect(wrapper.text()).toContain('Please accept the privacy policy')
+    expect(wrapper.find('#error-message4').text()).toContain('Please accept the privacy policy')
   })
 
   it('displays UI warning when user clicks register with invalid character limits', async () => {
     const wrapper = mount(RegistrationComponent)
     await wrapper.setData({ username: 'short', password: 'short', checkboxChecked: true })
     await wrapper.find('#registerbutton').trigger('click')
-    expect(wrapper.text()).toContain('Username and password must meet minimum character limits')
+    expect(wrapper.find('#error-message5').text()).toContain('Username and password must meet minimum character limits')
   })
 })

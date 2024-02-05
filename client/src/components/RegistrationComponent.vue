@@ -27,6 +27,9 @@
       <p id="error-message1" hidden>Please fill in all details</p>
       <p id="error-message2" hidden>Username is required</p>
       <p id="error-message3" hidden>Password is required</p>
+      <p id="error-message4" hidden>Please accept the privacy policy</p>
+      <p id="error-message5" hidden>Username and password must meet minimum character limits</p>
+      <p id="error-message6" hidden>Username already taken</p>
     </div>
   </div>
 </template>
