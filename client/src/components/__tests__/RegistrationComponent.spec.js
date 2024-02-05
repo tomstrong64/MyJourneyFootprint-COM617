@@ -6,9 +6,9 @@ import RegistrationComponent from '../RegistrationComponent.vue'
 describe('RegistrationComponent', () => {
   it('displays UI warning when user clicks register with no details', async () => {
     const wrapper = mount(RegistrationComponent)
-    await wrapper.find('registerbutton').trigger('click')
+    await wrapper.find('#registerbutton').trigger('click')
     // Assert that UI warning is displayed
-    expect(wrapper.text()).toContain('Please fill in all details')
+    expect(wrapper.find('#error-message').text()).toContain('Please fill in all details')
   })
 
   it('displays UI warning when user clicks register with no username', async () => {

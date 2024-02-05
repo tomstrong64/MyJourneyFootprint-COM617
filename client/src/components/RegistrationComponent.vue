@@ -22,6 +22,10 @@
     <div>
       <a id="privacy-link" @click="openPrivacyPage">Privacy Policy</a>
     </div>
+
+    <div>
+      <p id="error-message">Please fill in all details</p>
+    </div>
   </div>
 </template>
 
@@ -31,27 +35,27 @@ export default {
     return {
       username: '',
       password: '',
-      checkboxChecked: false,
-    };
+      checkboxChecked: false
+    }
   },
   methods: {
     async register() {
       // Simulate API call
       if (this.username === 'existingUser') {
-        throw new Error('Username already taken');
+        throw new Error('Username already taken')
       }
       // Simulate successful registration
       // return { status: 201 };
-      this.$emit('registration-success', 'Registration successful');
+      this.$emit('registration-success', 'Registration successful')
     },
     openPrivacyPage() {
       // Simulate opening privacy page
-      this.$emit('privacy-page-opened', 'Privacy Policy Page');
+      this.$emit('privacy-page-opened', 'Privacy Policy Page')
     },
     handleCheckboxClick() {
       // Simulate checkbox click handling
-      this.$emit('checkbox-clicked', 'Checkbox clicked successfully');
-    },
-  },
-};
+      this.$emit('checkbox-clicked', 'Checkbox clicked successfully')
+    }
+  }
+}
 </script>
