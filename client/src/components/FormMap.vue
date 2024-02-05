@@ -11,7 +11,7 @@ export default {
   name: "Map",
   data() {
   return {
-    center: [37.7749, -122.4194],
+    center: [37.7749, -112.48746],
     clickCount: 0,
     map: null,
     markers: [],
