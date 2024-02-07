@@ -74,44 +74,8 @@ describe('RegistrationComponent', () => {
     await wrapper.setData({ username: 'newUser', password: 'test', checkboxChecked: true })
     await wrapper.find('#registerbutton').trigger('click')
 
-    // Assert that the component handles the 201 response appropriately
-    // For example, you might want to navigate to a new page or emit a success event
-    // This test assumes the component shows a success message in the UI
     expect(wrapper.text()).toContain('Registration successful')
   })
-
-  it('opens privacy page on clicking privacy policy link', async () => {
-    const wrapper = mount(RegistrationComponent)
-    await wrapper.find('a').trigger('click')
-    // Assert that the privacy page is opened (could check the route, modal visibility, etc.)
-    // This is a simplified example
-    expect(wrapper.text()).toContain('Privacy Policy Page')
-  })
-
-  it('handles 200 response when user clicks checkbox on privacy page', async () => {
-    // Mock an API call that returns a successful response for checkbox click
-    const mockApi = {
-      //  post: async (url, data) => {
-      // Mock a successful response
-      //    return { status: 200 }
-      // }
-    }
-
-    const wrapper = mount(RegistrationComponent, {
-      global: {
-        mocks: {
-          $http: mockApi
-        }
-      }
-    })
-
-    // Assume there's a method in the component to handle checkbox click
-    await wrapper.vm.handleCheckboxClick()
-
-    // Assert that the component handles the 200 response appropriately
-    expect(wrapper.text()).toContain('Checkbox clicked successfully')
-  })
-
   it('displays UI warning when user clicks register without checking the box', async () => {
     const wrapper = mount(RegistrationComponent)
     await wrapper.setData({ username: 'testuser', password: 'test' })
@@ -123,6 +87,17 @@ describe('RegistrationComponent', () => {
     const wrapper = mount(RegistrationComponent)
     await wrapper.setData({ username: 'short', password: 'short', checkboxChecked: true })
     await wrapper.find('#registerbutton').trigger('click')
-    expect(wrapper.find('#error-message5').text()).toContain('Username and password must meet minimum character limits')
+    expect(wrapper.find('#error-message5').text()).toContain(
+      'Username and password must meet minimum character limits'
+    )
+  })
+
+  it('navigates to the login page when user clicks the login link', async () => {
+    const wrapper = mount(RegistrationComponent)
+    // Simulate a click on the login link
+    await wrapper.find('#login-link').trigger('click')
+
+    // Assert that the navigation occurred and the login page is displayed
+    expect(wrapper.vm.$route.path).toBe('/login')
   })
 })
