@@ -26,18 +26,18 @@ services:
     depends_on:
       - db
 
-  #server:
-  #  image: com617-server
-  #  build:
-  #    context: .
-  #    target: server-dev
-  #    dockerfile: Dockerfile
-  #  container_name: com617-server
-  #  ports:
-  #    - "3000:3000"
-  #  volumes:
-  #    - ./server:/usr/src/app
-  #    - /usr/src/app/node_modules
+  server:
+    image: com617-server
+    build:
+      context: .
+      target: server-dev
+      dockerfile: Dockerfile
+    container_name: com617-server
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./server:/usr/src/app
+      - /usr/src/app/node_modules
 
   client:
     image: com617-client
