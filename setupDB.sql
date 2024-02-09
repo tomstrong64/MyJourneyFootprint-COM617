@@ -1,64 +1,55 @@
-CREATE TYPE activity AS ENUM ('Car (by market segment)', 'Car (by size)', 'Motorbike', 'Van', 'HGV', 'HGV (refridgerated)');
+CREATE TYPE vehicle_activity AS ENUM ('Car (by market segment)', 'Car (by size)', 'Motorbike', 'Van', 'HGV', 'HGV (refridgerated)');
 
-CREATE TYPE vehicle AS (
-    activity activity,
-    type VARCHAR(50)
+CREATE TYPE vehicle_type AS ENUM (
+    'Mini', 'Supermini', 'Lower medium', 'Upper medium', 'Executive', 'Luxury', 
+    'Sports', 'Dual purpose 4X4', 'MPV', 'Small', 'Medium', 'Large', 'Average',
+    'Class I (up to 1.305 tonnes)', 'Class II (1.305 to 1.74 tonnes)', 
+    'Class III (1.74 to 3.5 tonnes)', 'Rigid (>3.5 - 7.5 tonnes)', 
+    'Rigid (>7.5 tonnes-17 tonnes)', 'Rigid (>17 tonnes)', 'All rigids', 
+    'Articulated (>3.5 - 33t)', 'Articulated (>33t)', 'All artics', 'All HGVs'
+);
+
+CREATE TYPE vehicle_fuel AS ENUM (
+    'Diesel', 'Petrol', 'Hybrid', 'CNG', 'LPG', 'Unknown', 
+    'Plug-in Hybrid Electric Vehicle', 'Battery Electric Vehicle'
+);
+
+CREATE TYPE vehicle_laden AS ENUM (
+    '0% Laden', '50% Laden', '100% Laden', 'Average laden', 'Not Applicable'
+);
+
+CREATE TYPE VEHICLE AS (
+    activity vehicle_activity,
+    type vehicle_type,
+    fuel vehicle_fuel,
+    laden vehicle_laden
+);
+
+CREATE TYPE LATLNG AS (
+    lat DECIMAL(9,6),
+    lng DECIMAL(9,6)
 );
 
 
-CREATE TYPE car_type_by_market AS ENUM ('Mini', 'Supermini', 'Lower medium', 'Upper medium', 'Executive', 'Luxury', 'Sports', 'Dual purpose 4X4', 'MPV');
-CREATE TYPE car_fuel_by_market AS ENUM ('Diesel', 'Petrol', 'Unknown', 'Plug-in Hybrid', 'Battery Electric')
+CREATE TABLE IF NOT EXISTS Users (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
 
-CREATE TYPE car_by_market AS (
-    type car_type_by_market,
-    fuel car_fuel_by_market
-) INHERITS (vehicle);
+CREATE TABLE IF NOT EXISTS Emissions (
+    id SERIAL PRIMARY KEY,
+    vehicle VEHICLE NOT NULL,
+    emission FLOAT NOT NULL
+);
 
-
-CREATE TYPE car_type_by_size AS ENUM ('Small', 'Medium', 'Large', 'Average');
-CREATE TYPE  car_fuel_by_size AS ENUM ('Diesel', 'Petrol', 'Hybrid', 'CNG', 'LPG', 'Unknown', 'Plug-in Hybrid Electric Vehicle', 'Battery Electric Vehicle');
-
-CREATE TYPE car_by_size AS(
-    type car_type_by_size,
-    fuel    car_fuel_by_size
-)INHERITS (vehicle);
-
-
-CREATE TYPE motorbike_type AS ENUM ('Small', 'Medium', 'Large', 'Average');
-
-CREATE TYPE motorbike AS(
-    type motorbike_type,
-)INHERITS (vehicle);
-
-
-CREATE TYPE van_type AS ENUM('Class I (up to 1.305 tonnes)', 'Class II (1.305 to 1.74 tonnes)', 'Class III (1.74 to 3.5 tonnes)', 'Average (up to 3.5 tonnes)');
-CREATE TYPE van_fuel_type AS ENUM ('Diesel', 'Petrol', 'CNG', 'LPG', 'Unknown'. 'Plug-in Hybrid Electric Vehicle', 'Battery Electric Vehicle')
-
-CREATE TYPE van AS(
-    type van_type,
-    fuel  van_fuel_type
-)INHERITS (vehicle);
-
-
-CREATE TYPE hgv_type AS ENUM ('Rigid (>3.5 - 7.5 tonnes)', 'Rigid (>7.5 tonnes-17 tonnes)', 'Rigid (>17 tonnes)', 'All rigids', 'Articulated (>3.5 - 33t)', 'Articulated (>33t)', 'All artics', 'All HGVs');
-CREATE TYPE hgv_laden AS ENUM ('0% Laden', '50% Laden', '100% Laden', 'Average laden');
-
-CREATE TYPE hgv AS(
-    type hgv_type,
-    laden hgv_laden
-)INHERITS (vehicle);
-
-
-CREATE TYPE hgvs_refrigerated_type AS ENUM ('Rigid (>3.5 - 7.5 tonnes)', 'Rigid (>7.5 tonnes-17 tonnes)', 'Rigid (>17 tonnes)', 'All rigids', 'Articulated (>3.5 - 33t)', 'Articulated (>33t)','All artics', 'All HGVs');
-CREATE TYPE hgvs_refrigerated_laden AS ENUM ('0% Laden', '50% Laden', '100% Laden', 'Average laden')
-
-CREATE TYPE hgv_refrigerated AS(
-    type hgvs_refrigerated,
-    laden hgvs_refrigerated_laden
-)INHERITS (vehicle);
-
-
-CREATE TYPE lat_lng AS (
-    lat DECIMAL(9,6),
-    lng DECIMAL(9,6)
+CREATE TABLE IF NOT EXISTS Trips (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL,
+    emission_id INTEGER NOT NULL,
+    trip_start LATLNG NOT NULL,
+    trip_end LATLNG NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES Users(id),
+    FOREIGN KEY (emission_id) REFERENCES Emissions(id)
 );

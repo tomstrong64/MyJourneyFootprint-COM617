@@ -5,6 +5,8 @@ services:
     image: postgres:16.1-alpine3.19
     container_name: com617-db
     restart: always
+    ports:
+      - "5432:5432"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
