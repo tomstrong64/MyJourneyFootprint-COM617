@@ -1,0 +1,61 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:16.1-alpine3.19
+    container_name: com617-db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - db:/var/lib/postgresql/data
+
+  graphql-engine:
+    image: hasura/graphql-engine:v2.15.2
+    container_name: com617-hasura
+    ports:
+      - "8080:8080"
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgres@com617-db:5432/postgres
+      #HASURA_GRAPHQL_ADMIN_SECRET: myadminsecretkey
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
+    restart: always
+    depends_on:
+      - db
+
+  app:
+    image: tomstrong/com617:latest
+    container_name: com617-app
+    ports:
+      - "3000:3000"
+
+  nginx:
+    image: nginx:1.25.3-alpine
+    container_name: com617-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./data/nginx:/etc/nginx/conf.d
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    command: '/bin/sh -c ''while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g "daemon off;"'''
+
+  certbot:
+    image: certbot/certbot
+    container_name: com617_cerbot
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+
+networks:
+  default:
+    name: project-network
+
+volumes:
+  db:
+    driver: local
