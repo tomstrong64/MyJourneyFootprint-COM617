@@ -139,7 +139,7 @@
           var emissionsPP = this.formData.distance /   0.12962 
           } else if (this.formData.travelClass == "Unknown"){
             var pplXdist = this.formData.distance * this.formData.numPeople
-          var emissionTotal = pplXdist *   0.12942 
+          var emissionTotal = pplXdist /   0.12942 
           var emissionsPP = this.formData.distance /   0.12942 
           } else if (this.formData.travelClass == "Plug-in Hybrid"){
           alert("There is no car that fits this spec")
