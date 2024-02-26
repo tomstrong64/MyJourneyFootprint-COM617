@@ -89,8 +89,10 @@ export default {
       .then((response) => response.json())
       .then((data) => {
         const routeCoordinates = data.routes[0].geometry.coordinates;
-        this.distance = data.routes[0].distance
-        document.getElementById("distanceCalc").innerHTML = this.distance / 1000
+        this.distance = data.routes[0].distance / 1000; // Convert meters to kilometers
+        console.log("Distance Recieved:",data.routes[0].distance)
+        document.getElementById("distanceCalc").innerHTML = this.distance;
+
         this.displayRoute(routeCoordinates);
       })
       .catch((error) => console.error("Error fetching OSRM route:", error));

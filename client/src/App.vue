@@ -1,14 +1,6 @@
 <template>
   <div id="app">
-    <header>
-      <nav>
-        <ul>
-          <li><router-link to="/">Home</router-link></li>
-          <li><router-link to="/about">About</router-link></li>
-          <!-- Add more navigation links as needed -->
-        </ul>
-      </nav>
-    </header>
+    
     <h1>Calculate Carbon Emissions for Your Journey</h1>
     <br><br><br><br><br><br>
     <div id="form" class="section"><TravelForm /></div>

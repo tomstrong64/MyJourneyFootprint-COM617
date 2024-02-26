@@ -60,7 +60,10 @@
   
   
       <label for="distance">Journey Distance (in km):</label>
-      <div id="distanceCalc"></div><br>
+      <input type="number" v-model="formData.distance" id="distance" min="0">
+      <div id="distanceCalc" v-if="!formData.distance">Distance will be calculated based on map clicks.</div>
+      <br>
+
   
       <button type="submit" class="calculate-button">Calculate Carbon Emissions</button>
     </form>
@@ -85,7 +88,8 @@
           numPeople: 1,
           start: '',
           end: '',
-          distance: 1,
+          distance: '',
+          distanceFromMap:'',
         },
         emissionTotal: null,
       emissionsPP:null,
@@ -124,8 +128,11 @@
       // For example, you can access this.formData.mode, this.formData.distance, etc.
       // Perform calculations and update your application state accordingly
       console.log('Calculating carbon emission...');
+      if (this.formData.distance == ""){
+          this.formData.distance = document.getElementById('distanceCalc').innerHTML
+        }
+        console.log("Dist Found:",this.formData.distance)
       // Your emission calculation logic goes here
-  
       if (this.formData.mode == "Car (by Segment)"){
         if (this.formData.carSegment == "Mini"){
           if (this.formData.travelClass == "Diesel"){
