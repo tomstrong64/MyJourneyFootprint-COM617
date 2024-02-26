@@ -61,7 +61,9 @@
 body {
   min-height: 100vh;
   color: var(--color-text);
-  background: var(--color-background);
+  background: #292663;
+  background: linear-gradient(32deg, #292663 40%, #3873ff 200%);
+
   transition:
     color 0.5s,
     background-color 0.5s;
@@ -83,4 +85,10 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#mapContainer {
+  width: 65vw;
+  height: 60vh;
+  position: flex;
 }
