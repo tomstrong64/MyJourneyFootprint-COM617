@@ -27,7 +27,7 @@ services:
       - db
 
   app:
-    image: tomstrong/com617:latest
+    image: com617.azurecr.io/com617:latest
     container_name: com617-app
     restart: always
 
