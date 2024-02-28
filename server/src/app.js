@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
+import history from 'connect-history-api-fallback';
 
 import HealthRouter from './routes/health.router.js';
 import { logRequest } from './controllers/index.controller.js';
@@ -17,6 +18,20 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/health', HealthRouter);
 
-app.use(express.static('src/public'));
+// Middleware for serving the vuejs frontend
+const staticFileMiddleware = express.static('src/public');
+
+// 1st call for unredirected requests
+app.use(staticFileMiddleware);
+
+// Support history api
+app.use(
+  history({
+    index: '/index.html',
+  })
+);
+
+// 2nd call for redirected requests
+app.use(staticFileMiddleware);
 
 export default app;
