@@ -26,33 +26,32 @@ services:
     depends_on:
       - db
 
-  server:
-    image: com617-server
-    build:
-      context: .
-      target: server-dev
-      dockerfile: Dockerfile
-    container_name: com617-server
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./server:/usr/src/app
-      - /usr/src/app/node_modules
+  app:
+    image: com617.azurecr.io/com617:latest
+    container_name: com617-app
+    restart: always
 
-  client:
-    image: com617-client
-    build:
-      context: .
-      target: client-dev
-      dockerfile: Dockerfile
-    container_name: com617-client
+  nginx:
+    image: nginx:1.25.3-alpine
+    container_name: com617-nginx
     ports:
-      - "5173:5173"
+      - "80:80"
+      - "443:443"
     volumes:
-      - ./client:/usr/src/app
-      - /usr/src/app/node_modules
-    depends_on:
-      - server
+      - ./data/nginx:/etc/nginx/conf.d
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    restart: always
+    command: '/bin/sh -c ''while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g "daemon off;"'''
+
+  certbot:
+    image: certbot/certbot
+    container_name: com617-cerbot
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    restart: always
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
 networks:
   default:
