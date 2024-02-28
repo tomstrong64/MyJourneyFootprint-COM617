@@ -62,21 +62,13 @@
                     About Us
                   </a>
                 </li>
-                <li>
-                  <a class="text-white hover:text-white font-semibold block pb-2 text-sm" href="">
-                    Blog
-                  </a>
-                </li>
+                
                 <li>
                   <a class="text-white hover:text-white font-semibold block pb-2 text-sm" href="">
                     Github
                   </a>
                 </li>
-                <li>
-                  <a class="text-white hover:text-white font-semibold block pb-2 text-sm" href="">
-                    Free Products
-                  </a>
-                </li>
+               
               </ul>
             </div>
             <div class="w-full lg:w-4/12 px-4">
