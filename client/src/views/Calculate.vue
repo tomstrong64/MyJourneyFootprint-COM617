@@ -125,13 +125,10 @@
             class="block flex-1 border-0 py-1.5 pl-1 text-white placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 rounded"
           ></div>
 
-          <label for="distance" class="font-medium leading-6 text-white"
-            >Journey Distance (in km):</label
-          >
-          <div
-            id="distanceCalc"
-            class="block flex-1 border-0 py-1.5 pl-1 text-white placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 rounded"
-          ></div>
+          <label for="distance">Journey Distance (in km):</label>
+      <input type="number" v-model="formData.distance" id="distance" min="0">
+      <div id="distanceCalc" v-if="!formData.distance">Distance will be calculated based on map clicks.</div>
+      
 
           <button
             type="submit"
@@ -186,7 +183,8 @@ export default {
         numPeople: 1,
         start: '',
         end: '',
-        distance: 1
+        distance: '',
+        distanceFromMap:'',
       },
       emissionTotal: null,
       emissionsPP: null
@@ -226,7 +224,9 @@ export default {
       // Perform calculations and update your application state accordingly
       console.log('Calculating carbon emission...')
       // Your emission calculation logic goes here
-
+      if (this.formData.distance == ""){
+          this.formData.distance = document.getElementById('distanceCalc').innerHTML
+        }
       if (this.formData.mode == 'Car (by Segment)') {
         if (this.formData.carSegment == 'Mini') {
           if (this.formData.travelClass == 'Diesel') {
