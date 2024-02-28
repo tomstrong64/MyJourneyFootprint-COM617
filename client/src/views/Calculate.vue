@@ -164,7 +164,7 @@
 <script>
 import HeaderNavBar from '@/components/AppHeader.vue'
 import FooterComponent from '@/components/AppFooter.vue'
-import MapForm from '@/views/MapForm.vue'
+import MapForm from '@/components/MapForm.vue'
 
 export default {
   components: {
