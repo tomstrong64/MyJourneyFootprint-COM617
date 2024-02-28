@@ -24,7 +24,7 @@ export default {
       console.log('Center:', this.center)
       const mapDiv = L.map('mapContainer').setView(this.center, 13)
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: 'Copyright Message'
+        attribution: 'Copyright Message!'
       }).addTo(mapDiv)
 
       mapDiv.on('click', this.handleMapClick)
