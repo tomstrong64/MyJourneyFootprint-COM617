@@ -3,17 +3,19 @@ import csv from "csv-parser";
 import pkg from "pg";
 const { Client } = pkg;
 
-
 const results = [];
 
 // Create a new client instance
-const client = new Client('postgres://postgres:postgres@localhost:5432/postgres');
+const client = new Client({
+  user: "postgres",
+  host: "localhost",
+  database: "postgres",
+  password: "postgres",
+  port: 5432,
+});
 
 // Connect to the database
-client.connect((err) => {
-  if (err) throw err;
-  console.log("Connected to the database.");
-});
+await client.connect();
 
 fs.createReadStream("Cars_By_Market.csv")
   .pipe(csv())
