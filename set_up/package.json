@@ -1,0 +1,16 @@
+{
+  "name": "set_up",
+  "version": "1.0.0",
+  "description": "",
+  "main": "insertData.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "pg": "^8.11.3"
+  }
+}
