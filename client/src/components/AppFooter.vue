@@ -16,7 +16,7 @@
         <polygon class="text-blueGray-200 fill-current" points="2560 0 2560 100 0 100"></polygon>
       </svg>
     </div>
-    <div class="container mx-auto px-4">
+    <div class="md-container px-4 px-4">
       <div class="flex flex-wrap text-center lg:text-left">
         <div class="w-full lg:w-6/12 px-4">
           <h4 class="text-lg mt-0 mb-2 text-white">
@@ -25,25 +25,25 @@
           </h4>
           <div class="mt-6 lg:mb-0 mb-6">
             <button
-              class="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+              class="bg-white text-black shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
               type="button"
             >
               <i class="fab fa-twitter"></i>
             </button>
             <button
-              class="bg-white text-lightBlue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+              class="bg-white text-black shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
               type="button"
             >
               <i class="fab fa-facebook-square"></i>
             </button>
             <button
-              class="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+              class="bg-white text-black shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
               type="button"
             >
-              <i class="fab fa-dribbble"></i>
+              <i class="fab fa-instagram"></i>
             </button>
             <button
-              class="bg-white shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+              class="bg-white text-black shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
               type="button"
             >
               <i class="fab fa-github"></i>
@@ -58,23 +58,19 @@
               </span>
               <ul class="list-unstyled">
                 <li>
-                  <a class="text-white hover:text-white font-semibold block pb-2 text-sm" href="">
-                    About Us
-                  </a>
+                  <router-link to="/">
+                    <a class="text-white hover:text-white font-semibold block pb-2 text-sm" href="">
+                      About Us
+                    </a>
+                  </router-link>
                 </li>
+
                 <li>
-                  <a class="text-white hover:text-white font-semibold block pb-2 text-sm" href="">
-                    Blog
-                  </a>
-                </li>
-                <li>
-                  <a class="text-white hover:text-white font-semibold block pb-2 text-sm" href="">
+                  <a
+                    class="text-white hover:text-white font-semibold block pb-2 text-sm"
+                    href="https://github.com/tomstrong64/MyJourneyFootprint-COM617"
+                  >
                     Github
-                  </a>
-                </li>
-                <li>
-                  <a class="text-white hover:text-white font-semibold block pb-2 text-sm" href="">
-                    Free Products
                   </a>
                 </li>
               </ul>
@@ -90,19 +86,26 @@
                   </a>
                 </li>
                 <li>
-                  <a class="text-white hover:text-white font-semibold block pb-2 text-sm" href="">
-                    Terms & Conditions
-                  </a>
+                  <router-link to="/">
+                    <a class="text-white hover:text-white font-semibold block pb-2 text-sm" href="">
+                      Terms & Conditions
+                    </a>
+                  </router-link>
+                </li>
+
+                <li>
+                  <router-link to="/">
+                    <a class="text-white hover:text-white font-semibold block pb-2 text-sm" href="">
+                      Privacy Policy
+                    </a>
+                  </router-link>
                 </li>
                 <li>
-                  <a class="text-white hover:text-white font-semibold block pb-2 text-sm" href="">
-                    Privacy Policy
-                  </a>
-                </li>
-                <li>
-                  <a class="text-white hover:text-white font-semibold block pb-2 text-sm" href="">
-                    Contact Us
-                  </a>
+                  <router-link to="/">
+                    <a class="text-white hover:text-white font-semibold block pb-2 text-sm" href="">
+                      Contact Us
+                    </a>
+                  </router-link>
                 </li>
               </ul>
             </div>

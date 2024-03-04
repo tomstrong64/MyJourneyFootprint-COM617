@@ -1,8 +1,8 @@
 <template>
   <header-nav-bar />
-  <div class="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
+  <div class="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-15">
     <div
-      class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center"
+      class="max-w-screen-7xl mx-auto px-4 lg:px-8 flex flex-col sm:flex-row justify-between items-center"
     >
       <!-- Form -->
       <div class="w-full sm:w-1/2 rounded-lg">
@@ -125,10 +125,13 @@
             class="block flex-1 border-0 py-1.5 pl-1 text-white placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 rounded"
           ></div>
 
-          <label for="distance">Journey Distance (in km):</label>
-      <input type="number" v-model="formData.distance" id="distance" min="0">
-      <div id="distanceCalc" v-if="!formData.distance">Distance will be calculated based on map clicks.</div>
-      
+          <label for="distance" class="font-medium leading-6 text-white"
+            >Journey Distance (in km):</label
+          >
+          <input type="number" v-model="formData.distance" id="distance" min="0" />
+          <div id="distanceCalc" class="font-medium leading-6 text-white" v-if="!formData.distance">
+            Distance will be calculated based on map clicks.
+          </div>
 
           <button
             type="submit"
@@ -152,7 +155,7 @@
       <!-- Map -->
       <div class="sm:w-1/2 mt-6 sm:mt-0">
         <!-- Map component goes here -->
-        <div id="map">
+        <div id="map" class="">
           <map-form />
         </div>
       </div>
@@ -164,7 +167,7 @@
 <script>
 import HeaderNavBar from '@/components/AppHeader.vue'
 import FooterComponent from '@/components/AppFooter.vue'
-import MapForm from '@/views/MapForm.vue'
+import MapForm from '@/components/MapForm.vue'
 
 export default {
   components: {
@@ -184,7 +187,7 @@ export default {
         start: '',
         end: '',
         distance: '',
-        distanceFromMap:'',
+        distanceFromMap: ''
       },
       emissionTotal: null,
       emissionsPP: null
@@ -224,9 +227,9 @@ export default {
       // Perform calculations and update your application state accordingly
       console.log('Calculating carbon emission...')
       // Your emission calculation logic goes here
-      if (this.formData.distance == ""){
-          this.formData.distance = document.getElementById('distanceCalc').innerHTML
-        }
+      if (this.formData.distance == '') {
+        this.formData.distance = document.getElementById('distanceCalc').innerHTML
+      }
       if (this.formData.mode == 'Car (by Segment)') {
         if (this.formData.carSegment == 'Mini') {
           if (this.formData.travelClass == 'Diesel') {
