@@ -7,7 +7,7 @@
         >
           <div class="rounded-t mb-0 px-6 py-6">
             <div class="text-center mb-3">
-              <h6 class="text-blueGray-500 text-sm font-bold">Sign in</h6>
+              <h6 class="text-black-300 text-sm font-bold">Sign in</h6>
             </div>
 
             <hr class="mt-6 border-b-1 border-blueGray-300" />
@@ -16,7 +16,7 @@
             <form>
               <div class="relative w-full mb-3">
                 <label
-                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  class="block uppercase text-black-300 text-xs font-bold mb-2"
                   htmlFor="grid-password"
                 >
                   Email
@@ -30,7 +30,7 @@
 
               <div class="relative w-full mb-3">
                 <label
-                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  class="block uppercase text-black-300 text-xs font-bold mb-2"
                   htmlFor="grid-password"
                 >
                   Password
@@ -48,7 +48,7 @@
                     type="checkbox"
                     class="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
                   />
-                  <span class="ml-2 text-sm font-semibold text-blueGray-600"> Remember me </span>
+                  <span class="ml-2 text-sm font-semibold text-black-300"> Remember me </span>
                 </label>
               </div>
 
@@ -65,16 +65,16 @@
         </div>
         <div class="flex flex-wrap mt-6 relative">
           <div class="w-1/2">
-            <a href="javascript:void(0)" class="text-blueGray-200">
+            <a href="javascript:void(0)" class="text-black-300">
               <small>Forgot password?</small>
             </a>
           </div>
           <div class="w-1/2 text-right">
-            <router-link to="/register" class="text-blueGray-200">
+            <router-link to="/register" class="text-black">
               <small>Create new account</small>
             </router-link>
           </div>
-          <div class="mt-12 justify-center text-xs text-gray-400">
+          <div class="mt-12 justify-center text-xs text-gray-600">
             <p>
               By clicking “Sign In” above, you acknowledge that you have read, understood, and agree
               to MyJourneyFootPrint's

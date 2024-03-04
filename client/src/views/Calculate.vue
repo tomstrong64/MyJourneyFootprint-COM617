@@ -2,7 +2,7 @@
   <header-nav-bar />
   <div class="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-15">
     <div
-      class="max-w-screen-xl px-4 sm:px-4 lg:px-4 flex flex-col sm:flex-row justify-between items-center"
+      class="max-w-screen-7xl mx-auto px-4 lg:px-8 flex flex-col sm:flex-row justify-between items-center"
     >
       <!-- Form -->
       <div class="w-full sm:w-1/2 rounded-lg">

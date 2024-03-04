@@ -16,7 +16,7 @@
         <polygon class="text-blueGray-200 fill-current" points="2560 0 2560 100 0 100"></polygon>
       </svg>
     </div>
-    <div class="container mx-auto px-4">
+    <div class="md-container px-4 px-4">
       <div class="flex flex-wrap text-center lg:text-left">
         <div class="w-full lg:w-6/12 px-4">
           <h4 class="text-lg mt-0 mb-2 text-white">
@@ -25,25 +25,25 @@
           </h4>
           <div class="mt-6 lg:mb-0 mb-6">
             <button
-              class="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+              class="bg-white text-black shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
               type="button"
             >
               <i class="fab fa-twitter"></i>
             </button>
             <button
-              class="bg-white text-lightBlue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+              class="bg-white text-black shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
               type="button"
             >
               <i class="fab fa-facebook-square"></i>
             </button>
             <button
-              class="bg-white text-lightBlue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+              class="bg-white text-black shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
               type="button"
             >
               <i class="fab fa-instagram"></i>
             </button>
             <button
-              class="bg-white shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+              class="bg-white text-black shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
               type="button"
             >
               <i class="fab fa-github"></i>

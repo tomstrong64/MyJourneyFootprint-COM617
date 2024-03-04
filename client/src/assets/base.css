@@ -89,7 +89,7 @@ body {
 
 #mapContainer {
   width: 48vw;
-  height: 60vh;
+  height: 48vh;
   position: flex;
   border-radius: 4px; /* 2px */
 }
