@@ -21,6 +21,4 @@ describe('Index Page Tests', () => {
     cy.get('[data-cy="sign-up-link"]').click()
     cy.url().should('include', '/register')
   })
-
-  // Add more test cases as needed
 })

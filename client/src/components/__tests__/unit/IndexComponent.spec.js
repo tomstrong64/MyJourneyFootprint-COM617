@@ -5,7 +5,7 @@ import HeaderNavBar from '@/components/AppHeader.vue';
 import FooterComponent from '@/components/AppFooter.vue';
 
 describe('IndexComponent', () => {
-  // Mount the component
+  
   const wrapper = mount(IndexComponent, {
     global: {
       components: {
