@@ -1,0 +1,10 @@
+Activity,Type,Unit,Diesel,Petrol,Unknown,Plug-in Hybrid Electric Vehicle,Battery Electric Vehicle
+Cars (by market segment),Mini,miles,0.173416,0.209687,0.209382,0,0
+,Supermini,miles,0.212676,0.228027,0.226096,0.034812,0
+,Lower medium,miles,0.230876,0.265097,0.249772,0.096187,0
+,Upper medium,miles,0.258296,0.309167,0.270256,0.101572,0
+,Executive,miles,0.278586,0.341687,0.293934,0.107026,0
+,Luxury,miles,0.339896,0.511897,0.418223,0.145169,0
+,Sports,miles,0.272686,0.381657,0.363984,0.131507,0
+,Dual purpose 4X4,miles,0.325006,0.328387,0.326213,0.114206,0
+,MPV,miles,0.284216,0.296537,0.287503,0.091066,0

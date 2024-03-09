@@ -1,0 +1,9 @@
+Activity,Type,Unit
+HGVs refrigerated (all diesel),Rigid (>3.5 - 7.5 tonnes),miles
+,Rigid (>7.5 tonnes-17 tonnes),miles
+,Rigid (>17 tonnes),miles
+,All rigids,miles
+,Articulated (>3.5 - 33t),miles
+,Articulated (>33t),miles
+,All artics,miles
+,All HGVs,miles
