@@ -11,6 +11,9 @@
   "type": "module",
   "dependencies": {
     "csv-parser": "^3.0.0",
+    "csv-writer": "^1.6.0",
+    "json2csv": "^6.0.0-alpha.2",
+    "papaparse": "^5.4.1",
     "pg": "^8.11.3"
   }
 }
