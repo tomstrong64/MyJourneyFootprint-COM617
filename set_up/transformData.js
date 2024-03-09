@@ -84,6 +84,11 @@ async function parseHeadlessFile(fileName) {
     }
   }
 
+  //remove column 2
+  for (let i = 0; i < data.length; i++) {
+    data[i].splice(2, 1);
+  }
+
   // fill the first column with the same value until a new value is found
   for (let i = 0; i < data.length; i++) {
     if (!data[i][0]) {
