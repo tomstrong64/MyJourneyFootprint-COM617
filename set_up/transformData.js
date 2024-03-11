@@ -72,7 +72,9 @@ async function parseHeadedFile(fileName) {
   }
   for (let i = 0; i < newData.length; i++) {
     // turn strings into numbs
-    newData[i][newData[i].length - 1] = parseFloat(newData[i][newData[i].length - 1]);
+    newData[i][newData[i].length - 1] = parseFloat(
+      newData[i][newData[i].length - 1]
+    );
   }
 
   console.table(newData);
@@ -129,30 +131,43 @@ async function parseHeadlessFile(fileName) {
   console.table(data);
   return data;
 }
-async function insertedData(){
-  const { Client } = require('pg');
 
-const client = new Client({
-  connectionString: 'postgresql://username:password@localhost:5432/mydatabase'
-});
+async function insertData(dataToInsert) {
+  const { Client } = require("pg");
 
-client.connect();
+  const client = new Client({
+    connectionString:
+      "postgres://postgres:postgres@localhost:5432/postgres",
+  });
 
-async function insertData(data) {
-  for (let row of data) {
-    const query = 'INSERT INTO mytable (column1, column2, column3) VALUES ($1, $2, $3)';
-    const values = [row[0], row[1], row[2]]; // replace with your actual columns
+  client.connect();
+  for (let row of dataToInsert) {
+
+    const vehicle = {
+      activity: row[0],
+      type: row[1],
+      fuel: 'Petrol',
+      laden: 'Not Applicable' // or whatever default value you want to use
+    };
+
+
+    const query =
+      "INSERT INTO Emissions (vehicle,emission) VALUES ($1, $2)";
+    const values = [vehicle, row[2]]; // replace with your actual columns
 
     try {
-      await client.query(query, values);
+      /*       await client.query(query, values);
+       */
+      // Print the query and values to the console instead of executing the query
+      console.log(`Query: ${query}`);
+      console.log(`Values: ${values}`);
     } catch (err) {
       console.error(err);
     }
   }
 }
 
-insertData(data);
-  }
+
 
 const files = [
   "Cars_By_Size.csv",
@@ -165,3 +180,5 @@ const files = [
 files.forEach(parseHeadedFile);
 
 parseHeadlessFile("Motorbike.csv");
+
+insertData(data);
