@@ -62,9 +62,22 @@ async function parseHeadedFile(fileName) {
 
   //TODO: remove rows where a value is missing
 
+  for (let i = 0; i < newData.length; i++) {
+    for (let j = 0; j < newData[i].length; j++) {
+      if (newData[i][j] == "" || newData[i][j] == "\r") {
+        newData.splice(i, 1);
+        i--;
+      }
+    }
+  }
+  for (let i = 0; i < newData.length; i++) {
+    // turn strings into numbs
+    newData[i][newData[i].length - 1] = parseFloat(newData[i][newData[i].length - 1]);
+  }
+
   console.table(newData);
 
-  //TODO: save to DB
+  return newData;
 }
 
 async function parseHeadlessFile(fileName) {
@@ -97,11 +110,49 @@ async function parseHeadlessFile(fileName) {
   }
 
   //TODO: remove rows where a value is missing
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].length < 3) {
+      data.splice(i, 1);
+      continue;
+    }
+    for (let j = 0; j < data[i].length; j++) {
+      if (data[i][j] == "" || data[i][j] == "/r" || data[i][j] == undefined) {
+        data.splice(i, 1);
+      }
+    }
+  }
+  for (let i = 0; i < data.length; i++) {
+    // turn strings into numbs
+    data[i][data[i].length - 1] = parseFloat(data[i][data[i].length - 1]);
+  }
 
   console.table(data);
-
-  //TODO: save to DB
+  return data;
 }
+async function insertedData(){
+  const { Client } = require('pg');
+
+const client = new Client({
+  connectionString: 'postgresql://username:password@localhost:5432/mydatabase'
+});
+
+client.connect();
+
+async function insertData(data) {
+  for (let row of data) {
+    const query = 'INSERT INTO mytable (column1, column2, column3) VALUES ($1, $2, $3)';
+    const values = [row[0], row[1], row[2]]; // replace with your actual columns
+
+    try {
+      await client.query(query, values);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+}
+
+insertData(data);
+  }
 
 const files = [
   "Cars_By_Size.csv",
