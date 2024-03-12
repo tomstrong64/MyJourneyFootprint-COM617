@@ -152,13 +152,12 @@ async function insertData(dataToInsert) {
     };
 
 
-    const query =
-      "INSERT INTO Emissions (vehicle,emission) VALUES ($1, $2)";
-    const values = [vehicle, row[2]]; // replace with your actual columns
+    const query = "INSERT INTO Emissions (vehicle, emission) VALUES (($1, $2, $3, $4), $5)";
+    const values = [vehicle.activity, vehicle.type, vehicle.fuel, vehicle.laden, row[2]];
 
     try {
-      /*       await client.query(query, values);
-       */
+            await client.query(query, values);
+      
       // Print the query and values to the console instead of executing the query
       console.log(`Query: ${query}`);
       console.log(`Values: ${JSON.stringify(vehicle)}, ${row[2]}`);    } catch (err) {
@@ -185,16 +184,15 @@ async function insertNewData(dataToInsert) {
     };
 
 
-    const query =
-      "INSERT INTO Emissions (vehicle,emission) VALUES ($1, $2)";
-    const values = [vehicle, row[2]]; // replace with your actual columns
+    const query = "INSERT INTO Emissions (vehicle, emission) VALUES (($1, $2, $3, $4), $5)";
+    const values = [vehicle.activity, vehicle.type, vehicle.fuel, vehicle.laden, row[3]];
 
     try {
-      /*       await client.query(query, values);
-       */
+            await client.query(query, values);
+      
       // Print the query and values to the console instead of executing the query
       console.log(`Query: ${query}`);
-      console.log(`Values: ${JSON.stringify(vehicle)}, ${row[2]}`);    } catch (err) {
+      console.log(`Values: ${JSON.stringify(vehicle)}, ${row[3]}`);    } catch (err) {
       console.error(err);
     }
   }
@@ -218,13 +216,12 @@ async function insertNewData1(dataToInsert) {
     };
 
 
-    const query =
-      "INSERT INTO Emissions (vehicle,emission) VALUES ($1, $2)";
-    const values = [vehicle, row[2]]; // replace with your actual columns
+    const query = "INSERT INTO Emissions (vehicle, emission) VALUES (($1, $2, $3, $4), $5)";
+    const values = [vehicle.activity, vehicle.type, vehicle.fuel, vehicle.laden, row[3]];
 
     try {
-      /*       await client.query(query, values);
-       */
+            await client.query(query, values);
+       
       // Print the query and values to the console instead of executing the query
       console.log(`Query: ${query}`);
       console.log(`Values: ${JSON.stringify(vehicle)}, ${row[2]}`);    } catch (err) {
@@ -252,7 +249,7 @@ filesLaden.forEach(parseHeadedFile);
 
 parseHeadlessFile("Motorbike.csv");
 
-parseHeadlessFile("Motorbike.csv").then(data => {
+/* parseHeadlessFile("Motorbike.csv").then(data => {
   insertData(data);
 });
 
@@ -269,3 +266,23 @@ Promise.all(filesLaden.map(parseHeadedFile)).then(newData1Array => {
     insertNewData1(newData);
   });
 });
+ */
+async function retrieveData() {
+
+  const client = new Client({
+    connectionString: "postgres://postgres:postgres@localhost:5432/postgres",
+  });
+
+  await client.connect();
+
+  try {
+    const res = await client.query("SELECT * FROM Emissions");
+    console.log(res.rows);
+  } catch (err) {
+    console.error(err);
+  } finally {
+    await client.end();
+  }
+}
+
+retrieveData();
