@@ -1,9 +1,0 @@
-"Activity","Type","Unit","Diesel","Petrol","CNG","LPG","Unknown","Plug-in Hybrid Electric Vehicle","Battery Electric Vehicle"
-"Vans","Class I (up to 1.305 tonnes)","km",0.14212,0.18217,0,0,0,0,0
-"","","miles",0.22875,0.29318,0,0,0,0,0
-"","Class II (1.305 to 1.74 tonnes)","km",0.17405,0.19594,0,0,0,0,0
-"","","miles",0.28013,0.31534,0,0,0,0,0
-"","Class III (1.74 to 3.5 tonnes)","km",0.25346,0.31444,0,0,0,0,0
-"","","miles",0.40792,0.50605,0,0,0,0,0
-"","Average (up to 3.5 tonnes)","km",0.23128,0.20132,0.23209,0.25504,0.23037,0,0
-"","","miles",0.37224,0.324,0.3735,0.41046,0.37075,0,0

@@ -1,5 +1,0 @@
-Activity,Type,Unit,Diesel,Petrol,Hybrid,CNG,LPG,Unknown,Plug-in Hybrid Electric Vehicle,Battery Electric Vehicle
-Cars (by size),Small car,miles,0.2242,0.2266,0.16336,0,0,0.22591,0.03481,0
-,Medium car,miles,0.26902,0.28676,0.17549,0.25203,0.28336,0.27754,0.09887,0
-,Large car,miles,0.3357,0.43812,0.2453,0.38375,0.43314,0.36389,0.11397,0
-,Average car,miles,0.27332,0.26379,0.19147,0.2817,0.3171,0.26817,0.10601,0
