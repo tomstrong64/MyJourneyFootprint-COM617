@@ -1,4 +1,6 @@
 import fs from "fs/promises";
+import pkg from "pg";
+const { Client } = pkg;
 
 async function fileTo2DArray(fileName) {
   const file = await fs.readFile(fileName, "utf-8");
@@ -133,14 +135,13 @@ async function parseHeadlessFile(fileName) {
 }
 
 async function insertData(dataToInsert) {
-  const { Client } = require("pg");
 
   const client = new Client({
     connectionString:
       "postgres://postgres:postgres@localhost:5432/postgres",
   });
 
-  client.connect();
+  await client.connect();
   for (let row of dataToInsert) {
 
     const vehicle = {
@@ -160,8 +161,73 @@ async function insertData(dataToInsert) {
        */
       // Print the query and values to the console instead of executing the query
       console.log(`Query: ${query}`);
-      console.log(`Values: ${values}`);
-    } catch (err) {
+      console.log(`Values: ${JSON.stringify(vehicle)}, ${row[2]}`);    } catch (err) {
+      console.error(err);
+    }
+  }
+}
+
+async function insertNewData(dataToInsert) {
+
+  const client = new Client({
+    connectionString:
+      "postgres://postgres:postgres@localhost:5432/postgres",
+  });
+
+  await client.connect();
+  for (let row of dataToInsert) {
+
+    const vehicle = {
+      activity: row[0],
+      type: row[1],
+      fuel: row[2],
+      laden: 'Not Applicable' // or whatever default value you want to use
+    };
+
+
+    const query =
+      "INSERT INTO Emissions (vehicle,emission) VALUES ($1, $2)";
+    const values = [vehicle, row[2]]; // replace with your actual columns
+
+    try {
+      /*       await client.query(query, values);
+       */
+      // Print the query and values to the console instead of executing the query
+      console.log(`Query: ${query}`);
+      console.log(`Values: ${JSON.stringify(vehicle)}, ${row[2]}`);    } catch (err) {
+      console.error(err);
+    }
+  }
+}
+
+async function insertNewData1(dataToInsert) {
+
+  const client = new Client({
+    connectionString:
+      "postgres://postgres:postgres@localhost:5432/postgres",
+  });
+
+  await client.connect();
+  for (let row of dataToInsert) {
+
+    const vehicle = {
+      activity: row[0],
+      type: row[1],
+      fuel: 'Not Applicable',
+      laden: row[2] 
+    };
+
+
+    const query =
+      "INSERT INTO Emissions (vehicle,emission) VALUES ($1, $2)";
+    const values = [vehicle, row[2]]; // replace with your actual columns
+
+    try {
+      /*       await client.query(query, values);
+       */
+      // Print the query and values to the console instead of executing the query
+      console.log(`Query: ${query}`);
+      console.log(`Values: ${JSON.stringify(vehicle)}, ${row[2]}`);    } catch (err) {
       console.error(err);
     }
   }
@@ -169,16 +235,37 @@ async function insertData(dataToInsert) {
 
 
 
-const files = [
+const filesFuel = [
   "Cars_By_Size.csv",
   "Cars_By_Market.csv",
-  "HGVs_allDiesel.csv",
-  "HGVs_Refrigerated.csv",
   "Vans.csv",
 ];
 
-files.forEach(parseHeadedFile);
+const filesLaden =[
+  "HGVs_allDiesel.csv",
+  "HGVs_Refrigerated.csv",
+]
+
+filesFuel.forEach(parseHeadedFile);
+filesLaden.forEach(parseHeadedFile);
+
 
 parseHeadlessFile("Motorbike.csv");
 
-insertData(data);
+parseHeadlessFile("Motorbike.csv").then(data => {
+  insertData(data);
+});
+
+Promise.all(filesFuel.map(parseHeadedFile)).then(newDataArray => {
+  // newDataArray is an array of the results of each call to parseHeadedFile
+  newDataArray.forEach(newData => {
+    insertNewData(newData);
+  });
+});
+
+Promise.all(filesLaden.map(parseHeadedFile)).then(newData1Array => {
+  // newDataArray is an array of the results of each call to parseHeadedFile
+  newData1Array.forEach(newData => {
+    insertNewData1(newData);
+  });
+});
