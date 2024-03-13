@@ -211,7 +211,7 @@ async function insertNewData1(dataToInsert) {
     const vehicle = {
       activity: row[0],
       type: row[1],
-      fuel: 'Not Applicable',
+      fuel: 'Diesel',
       laden: row[2] 
     };
 
@@ -249,7 +249,7 @@ filesLaden.forEach(parseHeadedFile);
 
 parseHeadlessFile("Motorbike.csv");
 
-/* parseHeadlessFile("Motorbike.csv").then(data => {
+parseHeadlessFile("Motorbike.csv").then(data => {
   insertData(data);
 });
 
@@ -266,7 +266,7 @@ Promise.all(filesLaden.map(parseHeadedFile)).then(newData1Array => {
     insertNewData1(newData);
   });
 });
- */
+
 async function retrieveData() {
 
   const client = new Client({

@@ -1,12 +1,13 @@
-CREATE TYPE vehicle_activity AS ENUM ('Car (by market segment)', 'Car (by size)', 'Motorbike', 'Van', 'HGV', 'HGV (refridgerated)');
+CREATE TYPE vehicle_activity AS ENUM ('Cars (by market segment)', 'Cars (by size)', 'Motorbike', 'Vans', 'HGV (all diesel)', 'HGVs refrigerated (all diesel)');
 
 CREATE TYPE vehicle_type AS ENUM (
     'Mini', 'Supermini', 'Lower medium', 'Upper medium', 'Executive', 'Luxury', 
-    'Sports', 'Dual purpose 4X4', 'MPV', 'Small', 'Medium', 'Large', 'Average',
+    'Sports', 'Dual purpose 4X4', 'MPV', 'Small', 'Medium', 'Large car','Large', 'Average car',
     'Class I (up to 1.305 tonnes)', 'Class II (1.305 to 1.74 tonnes)', 
     'Class III (1.74 to 3.5 tonnes)', 'Rigid (>3.5 - 7.5 tonnes)', 
     'Rigid (>7.5 tonnes-17 tonnes)', 'Rigid (>17 tonnes)', 'All rigids', 
-    'Articulated (>3.5 - 33t)', 'Articulated (>33t)', 'All artics', 'All HGVs'
+    'Articulated (>3.5 - 33t)', 'Articulated (>33t)', 'All artics', 'All HGVs',
+    'Average', 'Average (up to 3.5 tonnes)','Medium car','Small car'
 );
 
 CREATE TYPE vehicle_fuel AS ENUM (
