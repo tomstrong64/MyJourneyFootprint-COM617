@@ -68,7 +68,8 @@
                 <li>
                   <a
                     class="text-white hover:text-white font-semibold block pb-2 text-sm"
-                    href="https://github.com/tomstrong64/MyJourneyFootprint-COM617"
+                    href="https://github.com/tomstrong64/MyJourneyFootprint-COM617" 
+                    target="_blank"
                   >
                     Github
                   </a>

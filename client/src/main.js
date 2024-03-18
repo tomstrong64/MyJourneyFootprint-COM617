@@ -15,6 +15,7 @@ import Register from '@/views/auth/Register.vue'
 import Calculate from '@/views/Calculate.vue'
 
 import Index from '@/views/Index.vue'
+import Information from '@/views/Information.vue'
 
 const router = new createRouter({
   history: createWebHistory(),
@@ -22,7 +23,8 @@ const router = new createRouter({
     { path: '/', component: Index },
     { path: '/login', component: Login },
     { path: '/calculate', component: Calculate },
-    { path: '/register', component: Register }
+    { path: '/register', component: Register },
+    {path:'/info',component: Information}
   ]
 })
 
