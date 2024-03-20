@@ -3,7 +3,7 @@ name: Runs All Vitest Unit tests
 on:
     push:
         branches:
-            - 'main'
+            - 'jrykns-patch-4'
 
 jobs:
   build:
