@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "jsonwebtoken": "^9.0.2",
     "leaflet": "^1.9.4",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0"

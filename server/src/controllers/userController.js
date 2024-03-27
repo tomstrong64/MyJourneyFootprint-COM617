@@ -1,18 +1,35 @@
 // controllers/userController.js
 const User = require('../Models/user');
 const bcrypt = require('bcrypt');
+import jwt from 'jsonwebtoken';
+import client from '../config/db'; // add this
+import pg from pg 
+
 exports.createUser = async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    const newUser = await User.create({
-      name: req.body.name,
-      email: req.body.email,
-      password: hashedPassword,
+    const newUser = await client.query(
+      'INSERT INTO users(name, email, password) VALUES($1, $2, $3) RETURNING *',
+      [req.body.name, req.body.email, hashedPassword]
+    );
+
+    //generate token
+    const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
+      expiresIn: '1h',
     });
 
-    res.redirect('/login');
+    //set token in cookie
+    res.cookie('token', token);
+
+    //return token to client
+    return res.status(201).json({
+      message: 'User created successfully',
+      token,
+      redirect: '/',
+    });
   } catch (error) {
-    res.status(400).send(error);
+    console.log(error);
+    return res.status(500).send({ message: 'Internal server error' });
   }
 };
 
