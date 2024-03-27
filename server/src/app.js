@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import history from 'connect-history-api-fallback';
 
 import HealthRouter from './routes/health.router.js';
+import UserRoute from './routes/userRoute.js'
 import { logRequest } from './controllers/index.controller.js';
 
 const app = express();
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/health', HealthRouter);
+app.use('/userRoute',UserRoute)
 
 // Middleware for serving the vuejs frontend
 const staticFileMiddleware = express.static('src/public');
