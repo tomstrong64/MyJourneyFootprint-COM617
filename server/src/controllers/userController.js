@@ -1,9 +1,11 @@
 // controllers/userController.js
-const User = require('../Models/user');
 const bcrypt = require('bcrypt');
 import jwt from 'jsonwebtoken';
-import client from '../config/db'; // add this
-import pg from pg 
+import pkg from pg 
+const { Client } = pkg;
+
+const client = new Client({ connectionString:  "postgres://postgres:postgres@localhost:5432/postgres",
+});
 
 exports.createUser = async (req, res) => {
   try {
