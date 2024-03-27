@@ -13,6 +13,7 @@ import App from './App.vue'
 import Login from '@/views/auth/Login.vue'
 import Register from '@/views/auth/Register.vue'
 import Calculate from '@/views/Calculate.vue'
+import Policy from '@/views/policy.vue'
 
 import Index from '@/views/Index.vue'
 
@@ -22,7 +23,8 @@ const router = new createRouter({
     { path: '/', component: Index },
     { path: '/login', component: Login },
     { path: '/calculate', component: Calculate },
-    { path: '/register', component: Register }
+    { path: '/register', component: Register },
+    {path: '/policy', component: Policy}
   ]
 })
 
