@@ -135,140 +135,190 @@ async function parseHeadlessFile(fileName) {
 }
 
 async function insertData(dataToInsert) {
-
   const client = new Client({
-    connectionString:
-      "postgres://postgres:postgres@localhost:5432/postgres",
+    connectionString: "postgres://postgres:postgres@localhost:5432/postgres",
   });
 
   await client.connect();
   for (let row of dataToInsert) {
-
     const vehicle = {
       activity: row[0],
       type: row[1],
-      fuel: 'Petrol',
-      laden: 'Not Applicable' // or whatever default value you want to use
+      fuel: "Petrol",
+      laden: "Not Applicable", // or whatever default value you want to use
     };
 
-
-    const query = "INSERT INTO Emissions (vehicle, emission) VALUES (($1, $2, $3, $4), $5)";
-    const values = [vehicle.activity, vehicle.type, vehicle.fuel, vehicle.laden, row[2]];
+    const query =
+      "INSERT INTO Emissions (vehicle, emission) VALUES (($1, $2, $3, $4), $5)";
+    const values = [
+      vehicle.activity,
+      vehicle.type,
+      vehicle.fuel,
+      vehicle.laden,
+      row[2],
+    ];
 
     try {
-            await client.query(query, values);
-      
+      await client.query(query, values);
+
       // Print the query and values to the console instead of executing the query
       console.log(`Query: ${query}`);
-      console.log(`Values: ${JSON.stringify(vehicle)}, ${row[2]}`);    } catch (err) {
+      console.log(`Values: ${JSON.stringify(vehicle)}, ${row[2]}`);
+    } catch (err) {
       console.error(err);
     }
   }
 }
 
 async function insertNewData(dataToInsert) {
-
   const client = new Client({
-    connectionString:
-      "postgres://postgres:postgres@localhost:5432/postgres",
+    connectionString: "postgres://postgres:postgres@localhost:5432/postgres",
   });
 
   await client.connect();
   for (let row of dataToInsert) {
-
     const vehicle = {
       activity: row[0],
       type: row[1],
       fuel: row[2],
-      laden: 'Not Applicable' // or whatever default value you want to use
+      laden: "Not Applicable", // or whatever default value you want to use
     };
 
-
-    const query = "INSERT INTO Emissions (vehicle, emission) VALUES (($1, $2, $3, $4), $5)";
-    const values = [vehicle.activity, vehicle.type, vehicle.fuel, vehicle.laden, row[3]];
+    const query =
+      "INSERT INTO Emissions (vehicle, emission) VALUES (($1, $2, $3, $4), $5)";
+    const values = [
+      vehicle.activity,
+      vehicle.type,
+      vehicle.fuel,
+      vehicle.laden,
+      row[3],
+    ];
 
     try {
-            await client.query(query, values);
-      
+      await client.query(query, values);
+
       // Print the query and values to the console instead of executing the query
       console.log(`Query: ${query}`);
-      console.log(`Values: ${JSON.stringify(vehicle)}, ${row[3]}`);    } catch (err) {
+      console.log(`Values: ${JSON.stringify(vehicle)}, ${row[3]}`);
+    } catch (err) {
       console.error(err);
     }
   }
 }
 
 async function insertNewData1(dataToInsert) {
-
   const client = new Client({
-    connectionString:
-      "postgres://postgres:postgres@localhost:5432/postgres",
+    connectionString: "postgres://postgres:postgres@localhost:5432/postgres",
   });
 
   await client.connect();
   for (let row of dataToInsert) {
-
     const vehicle = {
       activity: row[0],
       type: row[1],
-      fuel: 'Diesel',
-      laden: row[2] 
+      fuel: "Diesel",
+      laden: row[2],
     };
 
-
-    const query = "INSERT INTO Emissions (vehicle, emission) VALUES (($1, $2, $3, $4), $5)";
-    const values = [vehicle.activity, vehicle.type, vehicle.fuel, vehicle.laden, row[3]];
+    const query =
+      "INSERT INTO Emissions (vehicle, emission) VALUES (($1, $2, $3, $4), $5)";
+    const values = [
+      vehicle.activity,
+      vehicle.type,
+      vehicle.fuel,
+      vehicle.laden,
+      row[3],
+    ];
 
     try {
-            await client.query(query, values);
-       
+      await client.query(query, values);
+
       // Print the query and values to the console instead of executing the query
       console.log(`Query: ${query}`);
-      console.log(`Values: ${JSON.stringify(vehicle)}, ${row[2]}`);    } catch (err) {
+      console.log(`Values: ${JSON.stringify(vehicle)}, ${row[2]}`);
+    } catch (err) {
       console.error(err);
     }
   }
 }
 
+const filesFuel = ["Cars_By_Size.csv", "Cars_By_Market.csv", "Vans.csv"];
 
+const filesLaden = ["HGVs_allDiesel.csv", "HGVs_Refrigerated.csv"];
 
-const filesFuel = [
-  "Cars_By_Size.csv",
-  "Cars_By_Market.csv",
-  "Vans.csv",
-];
+async function createDatabase() {
+  const client = new Client({
+    connectionString: "postgres://postgres:postgres@localhost:5432/postgres",
+  });
 
-const filesLaden =[
-  "HGVs_allDiesel.csv",
-  "HGVs_Refrigerated.csv",
-]
+  await client.connect();
+
+  fs.readFile("setupDB.sql", "utf8", (err, data) => {
+    if (err) {
+      console.error(`Error reading file: ${err}`);
+    } else {
+      client.query(data, (err, res) => {
+        if (err) {
+          console.error(`Error executing query: ${err.stack}`);
+        } else {
+          console.log("Database setup completed.");
+        }
+        client.end();
+      });
+    }
+  });
+}
+async function droppingDatabase() {
+  const client = new Client({
+    connectionString: "postgres://postgres:postgres@localhost:5432/postgres",
+  });
+
+  await client.connect();
+
+  fs.readFile("dropTables.sql", "utf8", (err, data) => {
+    if (err) {
+      console.error(`Error reading file: ${err}`);
+    } else {
+      client.query(data, (err, res) => {
+        if (err) {
+          console.error(`Error executing query: ${err.stack}`);
+        } else {
+          console.log("Tables dropped.");
+        }
+        client.end();
+      });
+    }
+  });
+}
+
+await droppingDatabase();
+await createDatabase();
+
 
 filesFuel.forEach(parseHeadedFile);
 filesLaden.forEach(parseHeadedFile);
 
-
 parseHeadlessFile("Motorbike.csv");
 
-parseHeadlessFile("Motorbike.csv").then(data => {
+parseHeadlessFile("Motorbike.csv").then((data) => {
   insertData(data);
 });
 
-Promise.all(filesFuel.map(parseHeadedFile)).then(newDataArray => {
+Promise.all(filesFuel.map(parseHeadedFile)).then((newDataArray) => {
   // newDataArray is an array of the results of each call to parseHeadedFile
-  newDataArray.forEach(newData => {
+  newDataArray.forEach((newData) => {
     insertNewData(newData);
   });
 });
 
-Promise.all(filesLaden.map(parseHeadedFile)).then(newData1Array => {
+Promise.all(filesLaden.map(parseHeadedFile)).then((newData1Array) => {
   // newDataArray is an array of the results of each call to parseHeadedFile
-  newData1Array.forEach(newData => {
+  newData1Array.forEach((newData) => {
     insertNewData1(newData);
   });
 });
 
 async function retrieveData() {
-
   const client = new Client({
     connectionString: "postgres://postgres:postgres@localhost:5432/postgres",
   });
@@ -285,4 +335,4 @@ async function retrieveData() {
   }
 }
 
-retrieveData();
+await retrieveData();
