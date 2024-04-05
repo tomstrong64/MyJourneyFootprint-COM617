@@ -161,10 +161,6 @@ async function insertMBData(dataToInsert) {
 
     try {
       await client.query(query, values);
-
-      // Print the query and values to the console instead of executing the query
-      console.log(`Query: ${query}`);
-      console.log(`Values: ${JSON.stringify(vehicle)}, ${row[2]}`);
     } catch (err) {
       console.error(err);
     }
@@ -192,10 +188,6 @@ async function insertFuelData(dataToInsert) {
 
     try {
       await client.query(query, values);
-
-      // Print the query and values to the console instead of executing the query
-      console.log(`Query: ${query}`);
-      console.log(`Values: ${JSON.stringify(vehicle)}, ${row[3]}`);
     } catch (err) {
       console.error(err);
     }
@@ -223,10 +215,6 @@ async function insertLadenData(dataToInsert) {
 
     try {
       await client.query(query, values);
-
-      // Print the query and values to the console instead of executing the query
-      console.log(`Query: ${query}`);
-      console.log(`Values: ${JSON.stringify(vehicle)}, ${row[2]}`);
     } catch (err) {
       console.error(err);
     }
@@ -251,10 +239,13 @@ async function createDatabase() {
   }
 }
 
+console.log("Dropping db...");
 await dropDatabase();
+console.log("Creating db...");
 await createDatabase();
 
 // insert fuel based emissions data
+console.log("Inserting fuel based data...");
 const filesFuel = ["Cars_By_Size.csv", "Cars_By_Market.csv", "Vans.csv"].map(
   (n) => `data/${n}`
 );
@@ -265,6 +256,7 @@ for (let file of filesFuel) {
 }
 
 // insert laden based emissions data
+console.log("Inserting laden based data...");
 const filesLaden = ["HGVs_allDiesel.csv", "HGVs_Refrigerated.csv"].map(
   (n) => `data/${n}`
 );
@@ -275,11 +267,12 @@ for (let file of filesLaden) {
 }
 
 // insert motorbike data
+console.log("Inserting motorbike data...");
 const motorbikeData = await parseHeadlessFile("data/Motorbike.csv");
 await insertMBData(motorbikeData);
 
 // display data that has been inserted
-const data = await client.query("SELECT * FROM Emissions");
-console.log(data.rows);
+const data = await client.query("SELECT * FROM emissions");
+console.log(`Inserted ${data.rows.length} rows`);
 
 await client.end();
