@@ -150,7 +150,7 @@ async function insertMBData(dataToInsert) {
     };
 
     const query =
-      "INSERT INTO Emissions (vehicle, emission) VALUES (($1, $2, $3, $4), $5)";
+      "INSERT INTO Emissions (vehicle_activity, vehicle_type, vehicle_fuel, vehicle_laden, emission) VALUES ($1, $2, $3, $4, $5)";
     const values = [
       vehicle.activity,
       vehicle.type,
@@ -181,7 +181,7 @@ async function insertFuelData(dataToInsert) {
     };
 
     const query =
-      "INSERT INTO Emissions (vehicle, emission) VALUES (($1, $2, $3, $4), $5)";
+      "INSERT INTO Emissions (vehicle_activity, vehicle_type, vehicle_fuel, vehicle_laden, emission) VALUES ($1, $2, $3, $4, $5)";
     const values = [
       vehicle.activity,
       vehicle.type,
@@ -212,7 +212,7 @@ async function insertLadenData(dataToInsert) {
     };
 
     const query =
-      "INSERT INTO Emissions (vehicle, emission) VALUES (($1, $2, $3, $4), $5)";
+      "INSERT INTO Emissions (vehicle_activity, vehicle_type, vehicle_fuel, vehicle_laden, emission) VALUES ($1, $2, $3, $4, $5)";
     const values = [
       vehicle.activity,
       vehicle.type,

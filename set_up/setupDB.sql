@@ -19,12 +19,6 @@ CREATE TYPE vehicle_laden AS ENUM (
     '0% Laden', '50% Laden', '100% Laden', 'Average laden', 'Not Applicable'
 );
 
-CREATE TYPE VEHICLE AS (
-    activity vehicle_activity,
-    type vehicle_type,
-    fuel vehicle_fuel,
-    laden vehicle_laden
-);
 
 CREATE TYPE LATLNG AS (
     lat DECIMAL(9,6),
@@ -41,7 +35,10 @@ CREATE TABLE IF NOT EXISTS Users (
 
 CREATE TABLE IF NOT EXISTS Emissions (
     id SERIAL PRIMARY KEY,
-    vehicle VEHICLE NOT NULL,
+    vehicle_activity vehicle_activity NOT NULL,
+    vehicle_type vehicle_type NOT NULL,
+    vehicle_fuel vehicle_fuel NOT NULL,
+    vehicle_laden vehicle_laden NOT NULL,
     emission FLOAT NOT NULL
 );
 
