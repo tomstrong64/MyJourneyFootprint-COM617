@@ -2,6 +2,12 @@ import fs from "fs/promises";
 import pkg from "pg";
 const { Client } = pkg;
 
+const client = new Client({
+  connectionString: "postgres://postgres:postgres@localhost:5432/postgres",
+});
+
+await client.connect();
+
 async function fileTo2DArray(fileName) {
   const file = await fs.readFile(fileName, "utf-8");
   return file.split("\n").map((row) => row.split(","));
@@ -134,12 +140,7 @@ async function parseHeadlessFile(fileName) {
   return data;
 }
 
-async function insertData(dataToInsert) {
-  const client = new Client({
-    connectionString: "postgres://postgres:postgres@localhost:5432/postgres",
-  });
-
-  await client.connect();
+async function insertMBData(dataToInsert) {
   for (let row of dataToInsert) {
     const vehicle = {
       activity: row[0],
@@ -170,12 +171,7 @@ async function insertData(dataToInsert) {
   }
 }
 
-async function insertNewData(dataToInsert) {
-  const client = new Client({
-    connectionString: "postgres://postgres:postgres@localhost:5432/postgres",
-  });
-
-  await client.connect();
+async function insertFuelData(dataToInsert) {
   for (let row of dataToInsert) {
     const vehicle = {
       activity: row[0],
@@ -206,12 +202,7 @@ async function insertNewData(dataToInsert) {
   }
 }
 
-async function insertNewData1(dataToInsert) {
-  const client = new Client({
-    connectionString: "postgres://postgres:postgres@localhost:5432/postgres",
-  });
-
-  await client.connect();
+async function insertLadenData(dataToInsert) {
   for (let row of dataToInsert) {
     const vehicle = {
       activity: row[0],
@@ -242,97 +233,53 @@ async function insertNewData1(dataToInsert) {
   }
 }
 
-const filesFuel = ["Cars_By_Size.csv", "Cars_By_Market.csv", "Vans.csv"];
-
-const filesLaden = ["HGVs_allDiesel.csv", "HGVs_Refrigerated.csv"];
-
-async function createDatabase() {
-  const client = new Client({
-    connectionString: "postgres://postgres:postgres@localhost:5432/postgres",
-  });
-
-  await client.connect();
-
-  fs.readFile("setupDB.sql", "utf8", (err, data) => {
-    if (err) {
-      console.error(`Error reading file: ${err}`);
-    } else {
-      client.query(data, (err, res) => {
-        if (err) {
-          console.error(`Error executing query: ${err.stack}`);
-        } else {
-          console.log("Database setup completed.");
-        }
-        client.end();
-      });
-    }
-  });
-}
-async function droppingDatabase() {
-  const client = new Client({
-    connectionString: "postgres://postgres:postgres@localhost:5432/postgres",
-  });
-
-  await client.connect();
-
-  fs.readFile("dropTables.sql", "utf8", (err, data) => {
-    if (err) {
-      console.error(`Error reading file: ${err}`);
-    } else {
-      client.query(data, (err, res) => {
-        if (err) {
-          console.error(`Error executing query: ${err.stack}`);
-        } else {
-          console.log("Tables dropped.");
-        }
-        client.end();
-      });
-    }
-  });
-}
-
-await droppingDatabase();
-await createDatabase();
-
-
-filesFuel.forEach(parseHeadedFile);
-filesLaden.forEach(parseHeadedFile);
-
-parseHeadlessFile("Motorbike.csv");
-
-parseHeadlessFile("Motorbike.csv").then((data) => {
-  insertData(data);
-});
-
-Promise.all(filesFuel.map(parseHeadedFile)).then((newDataArray) => {
-  // newDataArray is an array of the results of each call to parseHeadedFile
-  newDataArray.forEach((newData) => {
-    insertNewData(newData);
-  });
-});
-
-Promise.all(filesLaden.map(parseHeadedFile)).then((newData1Array) => {
-  // newDataArray is an array of the results of each call to parseHeadedFile
-  newData1Array.forEach((newData) => {
-    insertNewData1(newData);
-  });
-});
-
-async function retrieveData() {
-  const client = new Client({
-    connectionString: "postgres://postgres:postgres@localhost:5432/postgres",
-  });
-
-  await client.connect();
-
+async function dropDatabase() {
   try {
-    const res = await client.query("SELECT * FROM Emissions");
-    console.log(res.rows);
+    const query = await fs.readFile("dropDB.sql", "utf8");
+    await client.query(query);
   } catch (err) {
     console.error(err);
-  } finally {
-    await client.end();
   }
 }
 
-await retrieveData();
+async function createDatabase() {
+  try {
+    const query = await fs.readFile("setupDB.sql", "utf8");
+    await client.query(query);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+await dropDatabase();
+await createDatabase();
+
+// insert fuel based emissions data
+const filesFuel = ["Cars_By_Size.csv", "Cars_By_Market.csv", "Vans.csv"].map(
+  (n) => `data/${n}`
+);
+
+for (let file of filesFuel) {
+  const data = await parseHeadedFile(file);
+  await insertFuelData(data);
+}
+
+// insert laden based emissions data
+const filesLaden = ["HGVs_allDiesel.csv", "HGVs_Refrigerated.csv"].map(
+  (n) => `data/${n}`
+);
+
+for (let file of filesLaden) {
+  const data = await parseHeadedFile(file);
+  await insertLadenData(data);
+}
+
+// insert motorbike data
+const motorbikeData = await parseHeadlessFile("data/Motorbike.csv");
+await insertMBData(motorbikeData);
+
+// display data that has been inserted
+const data = await client.query("SELECT * FROM Emissions");
+console.log(data.rows);
+
+await client.end();
