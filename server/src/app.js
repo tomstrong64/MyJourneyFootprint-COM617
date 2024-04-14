@@ -6,6 +6,7 @@ import history from 'connect-history-api-fallback';
 import HealthRouter from './routes/health.router.js';
 import UserRoute from './routes/userRoute.js'
 import { logRequest } from './controllers/index.controller.js';
+import  LocalStrategy  from './middleware/localStrategy.js';
 
 const app = express();
 
@@ -16,6 +17,8 @@ app.use(logRequest);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use(LocalStrategy);
 
 app.use('/health', HealthRouter);
 app.use('/userRoute',UserRoute)

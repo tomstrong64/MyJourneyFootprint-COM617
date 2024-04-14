@@ -1,13 +1,11 @@
 // controllers/userController.js
-const bcrypt = require('bcrypt');
-import jwt from 'jsonwebtoken';
-import pkg from pg 
+import pkg from 'pg';
 const { Client } = pkg;
 
 const client = new Client({ connectionString:  "postgres://postgres:postgres@localhost:5432/postgres",
 });
 
-exports.createUser = async (req, res) => {
+export const createUser = async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     const newUser = await client.query(
@@ -35,7 +33,7 @@ exports.createUser = async (req, res) => {
   }
 };
 
-exports.login = async (req, res) => {
+export const login = async (req, res) => {
   try {
     // check if all fields are provided
     if (!req.body.email || !req.body.password)
