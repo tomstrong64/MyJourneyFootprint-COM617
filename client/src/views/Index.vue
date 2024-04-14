@@ -1,5 +1,5 @@
 <template>
-  <header-nav-bar />
+  <header-nav-bar data-cy="header-nav-bar" />
 
   <div class="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
     <img
@@ -65,27 +65,30 @@
     </div>
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
       <div class="mx-auto max-w-2xl lg:mx-0">
-        <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+        <h2 data-cy="title" class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
           Join us in our mission to reduce carbon footprints
         </h2>
-        <p class="mt-6 text-lg leading-8 text-gray-300">
+        <p data-cy="paragraph" class="mt-6 text-lg leading-8 text-gray-300">
           Calculate your carbon footprint now and take the first step towards a more sustainable
           future.
         </p>
         <div class="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
           <router-link
+          data-cy="get-started-link"
             class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             to="/calculate"
             >Get started
           </router-link>
-          <router-link class="text-sm font-semibold leading-6 text-white" to="/register">
+          <router-link 
+          data-cy="sign-up-link"
+          class="text-sm font-semibold leading-6 text-white" to="/register">
             Sign Up <span aria-hidden="true">→</span>
           </router-link>
         </div>
       </div>
     </div>
   </div>
-  <footer-component />
+  <footer-component data-cy="footer-component"/>
 </template>
 <script>
 import HeaderNavBar from '@/components/AppHeader.vue'
