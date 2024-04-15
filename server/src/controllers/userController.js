@@ -2,14 +2,15 @@
 import pkg from 'pg';
 const { Client } = pkg;
 
-const client = new Client({ connectionString:  "postgres://postgres:postgres@localhost:5432/postgres",
+const client = new Client({
+  connectionString: 'postgres://postgres:postgres@localhost:5432/postgres',
 });
 
 export const createUser = async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     const newUser = await client.query(
-      'INSERT INTO users(name, email, password) VALUES($1, $2, $3) RETURNING *',
+      'INSERT INTO Users(name, email, password) VALUES($1, $2, $3) RETURNING *',
       [req.body.name, req.body.email, hashedPassword]
     );
 
@@ -44,7 +45,7 @@ export const login = async (req, res) => {
     await client.connect();
 
     // check if user exists
-    const userQuery = 'SELECT * FROM users WHERE email = $1';
+    const userQuery = 'SELECT * FROM Users WHERE email = $1';
     const userValues = [email];
     const userResult = await client.query(userQuery, userValues);
     const user = userResult.rows[0];
@@ -71,7 +72,7 @@ export const login = async (req, res) => {
 
 export const updateUser = async (req, res) => {
   try {
-    const { id, email, password } = req.body;
+    const { id, email, name, password } = req.body;
 
     if (!id || !email || !password) {
       return res
@@ -82,8 +83,8 @@ export const updateUser = async (req, res) => {
     await client.connect();
 
     const updateQuery =
-      'UPDATE users SET email = $1, password = $2 WHERE id = $3';
-    const updateValues = [email, password, id];
+      'UPDATE Users SET email = $1, name = $2 password = $3 WHERE id = $4';
+    const updateValues = [email, name, password, id];
     await client.query(updateQuery, updateValues);
 
     res.status(200).json({ message: 'User updated successfully' });
