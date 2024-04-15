@@ -46,8 +46,6 @@
             </option>
           </select>
 
-          <textarea v-model="emissionData" rows="5" cols="50"></textarea>
-
           <label for="people" class="font-medium leading-6 text-white">Number of People:</label>
           <input
             type="number"
@@ -238,7 +236,6 @@ export default {
           }
         }
       `
-
       try {
         const result = await fetch('http://localhost:8080/v1/graphql', {
           method: 'POST',
@@ -257,7 +254,7 @@ export default {
         const emissions = data.data.emissions
         if (emissions.length > 0) {
           // If emission data is available, assign it to emissionData property
-          this.emissionData = `Emission: ${emissions[0].emission} kg CO2`
+          this.emissionData = `Emission: ${emissions[0].emission}`
         } else {
           // If no emission data found, display a message
           this.emissionData = 'No emission data available for the selected fuel type.'
@@ -271,6 +268,7 @@ export default {
       // Add logic to handle form submission (e.g., calculate emissions)
       // Access form data using this.formData
       console.log('Form submitted', this.formData)
+
       this.calculateCarbonEmission()
     },
     updateDropdownOptions() {
@@ -280,7 +278,6 @@ export default {
       this.formData.motorbikeType = ''
     },
     calculateCarbonEmission() {
-      var pplXdist, emissionTotal, emissionsPP
       // Add your logic to calculate carbon emission using this.formData
       // For example, you can access this.formData.mode, this.formData.distance, etc.
       // Perform calculations and update your application state accordingly
@@ -289,9 +286,16 @@ export default {
       if (this.formData.distance == '') {
         this.formData.distance = document.getElementById('distanceCalc').innerHTML
       }
+      console.log('Emission:', this.emissionData)
+      console.log('Number of people:', this.formData.numPeople)
+      console.log('Distance in calculate.veu :', this.formData.distance)
 
-      this.emissionTotal = emissionTotal
-      this.emissionsPP = emissionsPP
+      // Extract emission value from the string and convert it to a number
+      const emissionValue = parseFloat(this.emissionData.split(':')[1].trim())
+
+      this.emissionTotal = emissionValue * this.formData.distance
+      this.emissionsPP = this.emissionTotal / this.formData.numPeople
+      console.log('emission per person:', this.emissionsPP)
     }
   }
 }
