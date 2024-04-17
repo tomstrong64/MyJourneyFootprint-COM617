@@ -2,9 +2,12 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import history from 'connect-history-api-fallback';
+import session from 'express-session'; // Add the import statement for the session module
+import flash from 'connect-flash'; // Add the import statement for the flash module
 
 import HealthRouter from './routes/health.router.js';
 import UserRoute from './routes/userRoute.js';
+import IndexRouter from './routes/index.Router.js';
 import { logRequest } from './controllers/index.controller.js';
 import passport from 'passport';
 import LocalStrategy from './middleware/localStrategy.js';
@@ -18,7 +21,7 @@ app.use(logRequest);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-//app.use(flash());
+app.use(flash()); // Add the middleware for flash
 passport.use(LocalStrategy);
 app.use(
   session({
@@ -32,6 +35,7 @@ app.use(passport.session());
 
 app.use('/health', HealthRouter);
 app.use('/user', UserRoute);
+app.use(IndexRouter);
 
 // Middleware for serving the vuejs frontend
 const staticFileMiddleware = express.static('src/public');

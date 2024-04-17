@@ -106,15 +106,50 @@
   </div>
 </template>
 <script>
-import github from '@/assets/img/github.svg'
 import google from '@/assets/img/google.svg'
+import gitHub from '@/assets/img/github.svg'
 
 export default {
   data() {
     return {
-      github,
-      google
+      email: '',             // Bound to email input
+      password: '',          // Bound to password input
+      rememberMe: false,     // Bound to the checkbox
+      google,
+      gitHub
+    };
+  },
+  methods: {
+    async login() {
+      const user = {
+        email: this.email,
+        password: this.password,
+        rememberMe: this.rememberMe
+      };
+
+      try {
+        console.log('Logging in user:', user);
+        const response = await fetch('http://localhost:3000/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(user)
+        });
+
+        const responseData = await response.json();
+        console.log(responseData);
+        // Handle success, such as navigating to another route or setting user data
+        if (response.ok) {
+          alert('Login successful');
+        }
+      } catch (error) {
+        console.error('Login error:', error);
+        // Handle error, such as displaying a message to the user
+
+      }
     }
   }
 }
 </script>
+

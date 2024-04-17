@@ -14,20 +14,8 @@ export const createUser = async (req, res) => {
       [req.body.name, req.body.email, hashedPassword]
     );
 
-    //generate token
-    const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
-      expiresIn: '1h',
-    });
-
-    //set token in cookie
-    res.cookie('token', token);
-
-    //return token to client
-    return res.status(201).json({
-      message: 'User created successfully',
-      token,
-      redirect: '/',
-    });
+    
+    res.status(201).json({ message: 'User created successfully' });
   } catch (error) {
     console.log(error);
     return res.status(500).send({ message: 'Internal server error' });
@@ -118,3 +106,4 @@ export const deleteUser = async (req, res) => {
     await client.end();
   }
 };
+
