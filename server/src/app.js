@@ -4,11 +4,10 @@ import helmet from 'helmet';
 import history from 'connect-history-api-fallback';
 
 import HealthRouter from './routes/health.router.js';
-import UserRoute from './routes/userRoute.js'
+import UserRoute from './routes/userRoute.js';
 import { logRequest } from './controllers/index.controller.js';
-import { initialize } from 'passport';
-
-initialize(passport, getUserByEmail, getUserById);
+import passport from 'passport';
+import LocalStrategy from './middleware/localStrategy.js';
 
 const app = express();
 
@@ -19,11 +18,17 @@ app.use(logRequest);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(flash());
-app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: false }));
+//app.use(flash());
+passport.use(LocalStrategy);
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 app.use(passport.initialize());
 app.use(passport.session());
-
 
 app.use('/health', HealthRouter);
 app.use('/user', UserRoute);

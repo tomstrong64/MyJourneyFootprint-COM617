@@ -1,18 +1,18 @@
 import bcrypt from 'bcrypt';
 import { Strategy as LocalStrategy } from 'passport-local';
-import { getUserByEmail, getUserById } from '../controllers/userController.js';
+import { getUserByEmail } from '../services/userService.js';
 
-function initialize(passport, ) {
-  const authenticator = (email, password, done) => {
-    const user = getUserByEmail(email);
-    if (err) {
-      return done(err);
-    }
+const Strategy = new LocalStrategy(
+  { usernameField: 'email' },
+  async (email, password, done) => {
+    const user = await getUserByEmail(email);
+
     if (!user) {
       return done(null, false);
     }
+
     try {
-      const match = bcrypt.compare(password, user.password);
+      const match = await bcrypt.compare(password, user.password);
       if (!match) {
         return done(null, false);
       }
@@ -21,13 +21,7 @@ function initialize(passport, ) {
       return done(null, false);
     }
     return done(null, user);
-  };
-  passport.use(new LocalStrategy({ usernameField: 'email' }, authenticator));
-  passport.serializeUser((user, done) => done(null, user.id));
-  passport.deserializeUser((id, done) => {
-    return done(null, getUserById(id));
-  });
-}
+  }
+);
 
-
-export default initialize;
+export default Strategy;
