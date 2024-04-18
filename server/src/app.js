@@ -11,6 +11,8 @@ import IndexRouter from './routes/index.Router.js';
 import { logRequest } from './controllers/index.controller.js';
 import passport from 'passport';
 import LocalStrategy from './middleware/localStrategy.js';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
 
@@ -23,6 +25,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(flash()); // Add the middleware for flash
 passport.use(LocalStrategy);
+console.log('Session secret:', process.env.SESSION_SECRET);
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
