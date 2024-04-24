@@ -20,7 +20,6 @@ router.post('/login', checkNotAuthenticated, (req, res, next) => {
     }
     if (!user) {
       console.log(info); // This will log the message set in the done callback in your local strategy
-      return res.redirect('/login');
     }
     req.logIn(user, (err) => {
       if (err) {

@@ -141,6 +141,8 @@ export default {
         if (response.ok) {
           alert('Login successful')
           this.$router.push('/')
+        }else{
+          alert('Login failed')
         }
       } catch (error) {
         console.error('Login error:', error)
