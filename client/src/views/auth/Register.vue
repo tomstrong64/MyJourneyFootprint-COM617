@@ -116,7 +116,7 @@ export default {
   methods: {
     async register() {
       try {
-        const response = await fetch('http://localhost:8000/register', {
+        const response = await fetch('http://localhost:3000/user/register', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -127,7 +127,7 @@ export default {
             password: this.password
           })
         })
-
+        console.log('Registration response:', response.json.toString())
         if (response.ok) {
           alert('Registration successful')
         } else {

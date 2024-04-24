@@ -1,6 +1,7 @@
 // controllers/userController.js
 import pkg from 'pg';
 const { Client } = pkg;
+import bcrypt from 'bcrypt';
 
 const client = new Client({
   connectionString: 'postgres://postgres:postgres@localhost:5432/postgres',
@@ -8,6 +9,7 @@ const client = new Client({
 
 export const createUser = async (req, res) => {
   try {
+    console.log(req.body);
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     const newUser = await client.query(
       'INSERT INTO Users(name, email, password) VALUES($1, $2, $3) RETURNING *',
@@ -15,7 +17,7 @@ export const createUser = async (req, res) => {
     );
 
     
-    res.status(201).json({ message: 'User created successfully' });
+    return res.status(201).json({ message: 'User created successfully' });
   } catch (error) {
     console.log(error);
     return res.status(500).send({ message: 'Internal server error' });
@@ -107,3 +109,4 @@ export const deleteUser = async (req, res) => {
   }
 };
 
+export default { createUser, login, updateUser, deleteUser };

@@ -1,6 +1,7 @@
 // routes/userRoutes.js
 import { Router } from 'express';
 import { checkNotAuthenticated } from '../middleware/auth.js';
+import UserController from '../controllers/userController.js';
 
 const router = Router();
 
@@ -8,9 +9,16 @@ const router = Router();
   res.render('index.ejs', { name: req.user.name });
 }); */
 
-router.get('/login', checkNotAuthenticated, (req, res) => {
-  res.render('login.ejs');
+router.post('/register', checkNotAuthenticated, UserController.createUser) 
+
+router.post('/login', (req, res, next) => {
+  passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/login',
+    failureFlash: true,
+  })(req, res, next);
 });
+
 
 router.delete('/logout', (req, res) => {
   req.logOut();

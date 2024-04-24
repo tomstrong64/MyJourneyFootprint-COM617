@@ -29,7 +29,7 @@
               <div class="relative w-full mb-3">
                 <label
                   class="block uppercase text-black text-xs font-bold mb-2"
-                  htmlFor="grid-password"
+                  htmlFor="email"
                 >
                   Email
                 </label>
@@ -37,13 +37,14 @@
                   type="email"
                   class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                   placeholder="Email"
+                  id="email"
                 />
               </div>
 
               <div class="relative w-full mb-3">
                 <label
                   class="block uppercase text-black text-xs font-bold mb-2"
-                  htmlFor="grid-password"
+                  htmlFor="password"
                 >
                   Password
                 </label>
@@ -51,6 +52,7 @@
                   type="password"
                   class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                   placeholder="Password"
+                  id="password"
                 />
               </div>
               <div>
@@ -68,6 +70,7 @@
                 <button
                   class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   type="submit"
+                  onClick=""
                 >
                   Sign In
                 </button>

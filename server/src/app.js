@@ -23,7 +23,6 @@ app.use(logRequest);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(flash()); // Add the middleware for flash
 passport.use(LocalStrategy);
 console.log('Session secret:', process.env.SESSION_SECRET);
 
