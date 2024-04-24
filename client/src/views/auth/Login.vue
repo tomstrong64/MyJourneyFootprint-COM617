@@ -27,10 +27,7 @@
             </div>
             <form>
               <div class="relative w-full mb-3">
-                <label
-                  class="block uppercase text-black text-xs font-bold mb-2"
-                  htmlFor="email"
-                >
+                <label class="block uppercase text-black text-xs font-bold mb-2" htmlFor="email">
                   Email
                 </label>
                 <input
@@ -42,10 +39,7 @@
               </div>
 
               <div class="relative w-full mb-3">
-                <label
-                  class="block uppercase text-black text-xs font-bold mb-2"
-                  htmlFor="password"
-                >
+                <label class="block uppercase text-black text-xs font-bold mb-2" htmlFor="password">
                   Password
                 </label>
                 <input
@@ -70,7 +64,7 @@
                 <button
                   class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   type="submit"
-                  onClick=""
+                  @click="login"
                 >
                   Sign In
                 </button>
@@ -115,12 +109,12 @@ import gitHub from '@/assets/img/github.svg'
 export default {
   data() {
     return {
-      email: '',             // Bound to email input
-      password: '',          // Bound to password input
-      rememberMe: false,     // Bound to the checkbox
+      email: '', // Bound to email input
+      password: '', // Bound to password input
+      rememberMe: false, // Bound to the checkbox
       google,
       gitHub
-    };
+    }
   },
   methods: {
     async login() {
@@ -128,31 +122,31 @@ export default {
         email: this.email,
         password: this.password,
         rememberMe: this.rememberMe
-      };
+      }
 
       try {
-        console.log('Logging in user:', user);
-        const response = await fetch('http://localhost:3000/login', {
+        console.log('Logging in user:', user)
+        const response = await fetch('http://localhost:3000/user/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(user)
-        });
+        })
+        console.log('Login response:', response.json.toString())
 
-        const responseData = await response.json();
-        console.log(responseData);
+        const responseData = await response.json()
+        console.log(responseData)
         // Handle success, such as navigating to another route or setting user data
         if (response.ok) {
-          alert('Login successful');
+          alert('Login successful')
+          this.$router.push('/')
         }
       } catch (error) {
-        console.error('Login error:', error);
+        console.error('Login error:', error)
         // Handle error, such as displaying a message to the user
-
       }
     }
   }
 }
 </script>
-

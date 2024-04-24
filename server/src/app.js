@@ -35,6 +35,8 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
+
 
 app.use('/health', HealthRouter);
 app.use('/user', UserRoute);

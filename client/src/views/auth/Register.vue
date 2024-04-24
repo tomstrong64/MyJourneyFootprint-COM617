@@ -130,6 +130,9 @@ export default {
         console.log('Registration response:', response.json.toString())
         if (response.ok) {
           alert('Registration successful')
+          //redirect to login
+          this.$router.push('/login')
+          
         } else {
           alert('Registration failed')
         }

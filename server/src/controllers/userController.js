@@ -4,8 +4,10 @@ const { Client } = pkg;
 import bcrypt from 'bcrypt';
 
 const client = new Client({
-  connectionString: 'postgres://postgres:postgres@localhost:5432/postgres',
+  connectionString: 'postgres://postgres:postgres@com617-db:5432/postgres',
 });
+
+client.connect();
 
 export const createUser = async (req, res) => {
   try {
@@ -48,7 +50,6 @@ export const login = async (req, res) => {
     if (!match)
       return res.status(401).json({ message: 'Invalid email or password' });
 
-    res.redirect('/');
   } catch (e) {
     console.log(e);
     return res.status(500).json({
