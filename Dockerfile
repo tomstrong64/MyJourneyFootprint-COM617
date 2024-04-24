@@ -1,4 +1,4 @@
-FROM node:20.11.0-bookworm-slim AS base
+FROM node:latest AS base
 # build server
 WORKDIR /usr/src/app
 COPY ./server/package*.json ./
@@ -16,7 +16,7 @@ RUN npm i
 RUN npm run build
 
 
-FROM node:20.11.0-bookworm-slim AS prod
+FROM node:20.12.2-bookworm-slim AS prod
 
 ENV NODE_ENV=production
 ENV PORT=3000
@@ -35,7 +35,7 @@ EXPOSE $PORT
 CMD ["dumb-init", "node", "./src/bin/www.js"]
 
 
-FROM node:20.11.0-bookworm-slim AS server-dev
+FROM node:20.12.2-bookworm-slim AS server-dev
 
 ENV NODE_ENV=development
 ENV PORT=3000
@@ -49,7 +49,7 @@ EXPOSE $PORT
 CMD npm run dev
 
 
-FROM node:20.11.0-bookworm-slim AS client-dev
+FROM node:20.12.2-bookworm-slim AS client-dev
 
 ENV NODE_ENV=development
 ENV PORT=5173
