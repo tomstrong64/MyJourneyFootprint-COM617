@@ -21,7 +21,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build the Docker image
-        run: docker build -t ${{ secrets.DOCKER_REGISTRY }}/com617:latest .
+        run: docker build -t ${{ secrets.DOCKER_REGISTRY }}/com617:latest --target prod .
 
       - name: Push the Docker image
         run: docker push ${{ secrets.DOCKER_REGISTRY }}/com617:latest
