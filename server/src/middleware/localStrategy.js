@@ -1,6 +1,9 @@
+import passport from 'passport';
 import bcrypt from 'bcrypt';
 import { Strategy as LocalStrategy } from 'passport-local';
 import { getUserByEmail } from '../services/userService.js';
+import { getUserById } from '../services/userService.js';
+
 
 export const Strategy = new LocalStrategy(
   { usernameField: 'email' },
@@ -31,6 +34,9 @@ passport.serializeUser = (user, done) => {
 passport.deserializeUser = async (id, done) => {
   try {
     const user = await getUserById(id);
+    if (!user) {
+      return done(new Error('User not found'), null);
+    }
     done(null, user);
   } catch (e) {
     done(e, null);

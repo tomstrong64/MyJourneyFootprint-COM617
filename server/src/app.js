@@ -13,7 +13,6 @@ import passport from 'passport';
 import * as LocalStrategy from './middleware/localStrategy.js';
 import dotenv from 'dotenv';
 dotenv.config();
-LocalStrategy.default(passport);
 const app = express();
 
 app.use(cors());
@@ -24,6 +23,8 @@ app.use(logRequest);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 passport.use(LocalStrategy.Strategy);
+passport.serializeUser(LocalStrategy.serializeUser);
+passport.deserializeUser(LocalStrategy.deserializeUser);
 console.log('Session secret:', process.env.SESSION_SECRET);
 
 app.use(

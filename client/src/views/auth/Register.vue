@@ -34,7 +34,7 @@
                 </label>
                 <input
                   v-model="name"
-                  type="email"
+                  type="text"
                   class="border-0 px-3 py-3 placeholder-white text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                   placeholder="Name"
                 />
@@ -127,7 +127,8 @@ export default {
             password: this.password
           })
         })
-        console.log('Registration response:', response.json.toString())
+        const responseData = await response.json();
+        console.log('Registration response:', responseData)
         if (response.ok) {
           alert('Registration successful')
           //redirect to login
