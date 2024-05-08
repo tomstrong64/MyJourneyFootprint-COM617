@@ -27,11 +27,11 @@ export const Strategy = new LocalStrategy(
   }
 );
 
-passport.serializeUser = (user, done) => {
+passport.serializeUser((user, done) => {
   done(null, user.id);
-};
+});
 
-passport.deserializeUser = async (id, done) => {
+passport.deserializeUser(async (id, done) => {
   try {
     const user = await getUserById(id);
     if (!user) {
@@ -41,6 +41,6 @@ passport.deserializeUser = async (id, done) => {
   } catch (e) {
     done(e, null);
   }
-};
+});
 
 export default passport;

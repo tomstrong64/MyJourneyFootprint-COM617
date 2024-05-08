@@ -1,3 +1,9 @@
+import pkg from 'pg';
+const { Pool } = pkg;
+const pool = new Pool({
+  connectionString: 'postgres://postgres:postgres@localhost:5432/postgres',
+});
+
 export const getUserByEmail = async (email) => {
   const query = 'SELECT * FROM users WHERE email = $1';
   const values = [email];
