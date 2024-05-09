@@ -5,12 +5,10 @@ import history from 'connect-history-api-fallback';
 import session from 'express-session'; // Add the import statement for the session module
 import flash from 'connect-flash'; // Add the import statement for the flash module
 
-import HealthRouter from './routes/health.router.js';
-import UserRoute from './routes/userRoute.js';
-import IndexRouter from './routes/index.Router.js';
+import IndexRouter from './routes/index.router.js';
 import { logRequest } from './controllers/index.controller.js';
 import passport from 'passport';
-import * as LocalStrategy from './middleware/localStrategy.js';
+import LocalStrategy from './middleware/Passport/Local.js';
 import dotenv from 'dotenv';
 dotenv.config();
 const app = express();
@@ -22,9 +20,9 @@ app.use(logRequest);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-passport.use(LocalStrategy.Strategy);
-passport.serializeUser(LocalStrategy.serializeUser);
-passport.deserializeUser(LocalStrategy.deserializeUser);
+passport.use(LocalStrategy);
+passport.serializeUser((user, done) => done(null, user));
+passport.deserializeUser((user, done) => done(null, user));
 console.log('Session secret:', process.env.SESSION_SECRET);
 
 app.use(
@@ -38,9 +36,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-
-app.use('/health', HealthRouter);
-app.use('/user', UserRoute);
 app.use(IndexRouter);
 
 // Middleware for serving the vuejs frontend
