@@ -6,21 +6,15 @@ import passport from 'passport';
 
 const router = Router();
 
-/* router.get('/', checkAuthenticated, (req, res) => {
-  res.render('index.ejs', { name: req.user.name });
-}); */
-
 router.post('/register', checkNotAuthenticated, UserController.createUser);
 
-router.post(
-  '/login',
-  checkNotAuthenticated,
-  passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/login',
-    failureFlash: true,
-  })
-);
+router.post('/login', checkNotAuthenticated, function (req, res, next) {
+  passport.authenticate('local', function (err, user, info, status) {
+    if (err) return res.sendStatus(500);
+    if (!user) return res.sendStatus(401);
+    res.sendStatus(200);
+  })(req, res, next);
+});
 
 router.delete('/logout', (req, res) => {
   req.logOut();
