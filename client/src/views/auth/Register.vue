@@ -127,13 +127,11 @@ export default {
             password: this.password
           })
         })
-        const responseData = await response.json();
-        console.log('Registration response:', responseData)
+
         if (response.ok) {
           alert('Registration successful')
           //redirect to login
           this.$router.push('/login')
-          
         } else {
           alert('Registration failed')
         }

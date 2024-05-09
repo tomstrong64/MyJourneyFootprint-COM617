@@ -25,26 +25,34 @@
             <div class="text-black text-center mb-3 font-bold">
               <small>Or sign in with credentials</small>
             </div>
-            <form>
+            <form action="http://localhost:3000/user/login" method="post">
               <div class="relative w-full mb-3">
-                <label class="block uppercase text-black text-xs font-bold mb-2" htmlFor="email">
+                <label
+                  class="block uppercase text-white text-xs font-bold mb-2"
+                  htmlFor="grid-password"
+                >
                   Email
                 </label>
                 <input
+                  v-model="email"
                   type="email"
-                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  class="border-0 px-3 py-3 placeholder-white text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                   placeholder="Email"
                   id="email"
                 />
               </div>
 
               <div class="relative w-full mb-3">
-                <label class="block uppercase text-black text-xs font-bold mb-2" htmlFor="password">
+                <label
+                  class="block uppercase text-white text-xs font-bold mb-2"
+                  htmlFor="grid-password"
+                >
                   Password
                 </label>
                 <input
+                  v-model="password"
                   type="password"
-                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  class="border-0 px-3 py-3 placeholder-white text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                   placeholder="Password"
                   id="password"
                 />
@@ -64,7 +72,6 @@
                 <button
                   class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   type="submit"
-                  @click="login"
                 >
                   Sign In
                 </button>
@@ -111,39 +118,34 @@ export default {
     return {
       email: '', // Bound to email input
       password: '', // Bound to password input
-      rememberMe: false, // Bound to the checkbox
+      //rememberMe: false, // Bound to the checkbox
       google,
       gitHub
     }
   },
   methods: {
     async login() {
-      const user = {
-        email: this.email,
-        password: this.password,
-        rememberMe: this.rememberMe
-      }
-
       try {
-        console.log('Logging in user:', user)
-        const response = await fetch('http://localhost:3000/user/login', {
+        /* const response = await fetch('http://localhost:3000/user/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(user)
+          body: JSON.stringify({
+            email: this.email,
+            password: this.password
+            //rememberMe: this.rememberMe
+          }),
+          redirect: 'follow'
         })
-        console.log('Login response:', response.json.toString())
 
-        const responseData = await response.json()
-        console.log(responseData)
         // Handle success, such as navigating to another route or setting user data
         if (response.ok) {
           alert('Login successful')
           this.$router.push('/')
-        }else{
+        } else {
           alert('Login failed')
-        }
+        } */
       } catch (error) {
         console.error('Login error:', error)
         // Handle error, such as displaying a message to the user

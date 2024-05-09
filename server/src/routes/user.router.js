@@ -9,10 +9,12 @@ const router = Router();
 router.post('/register', checkNotAuthenticated, UserController.createUser);
 
 router.post('/login', checkNotAuthenticated, function (req, res, next) {
+  console.log(req.body);
   passport.authenticate('local', function (err, user, info, status) {
-    if (err) return res.sendStatus(500);
-    if (!user) return res.sendStatus(401);
-    res.sendStatus(200);
+    console.log(err);
+    console.log(user);
+    if (err || !user) return res.redirect('/login');
+    return res.redirect('/');
   })(req, res, next);
 });
 
