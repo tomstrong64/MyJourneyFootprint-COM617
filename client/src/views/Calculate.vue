@@ -138,7 +138,8 @@ export default {
         distanceFromMap: ''
       },
       emissionTotal: null,
-      emissionsPP: null
+      emissionsPP: null,
+      url: import.meta.env.VITE_API_URL
     }
   },
   computed: {
@@ -175,7 +176,7 @@ export default {
           }
         `
       try {
-        const result = await fetch('http://localhost:8080/v1/graphql', {
+        const result = await fetch(`${this.url}/graphql`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -205,7 +206,7 @@ export default {
     `
 
       try {
-        const result = await fetch('http://localhost:8080/v1/graphql', {
+        const result = await fetch(`${this.url}/graphql`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -237,7 +238,7 @@ export default {
         }
       `
       try {
-        const result = await fetch('http://localhost:8080/v1/graphql', {
+        const result = await fetch(`${this.url}/graphql`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
