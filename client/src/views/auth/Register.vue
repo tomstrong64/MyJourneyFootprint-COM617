@@ -110,13 +110,14 @@ export default {
       name: '', // Added this property
       email: '',
       password: '',
-      google
+      google,
+      url: import.meta.env.VITE_API_URL
     }
   },
   methods: {
     async register() {
       try {
-        const response = await fetch('http://localhost:3000/user/register', {
+        const response = await fetch(`${this.url}/user/register`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
