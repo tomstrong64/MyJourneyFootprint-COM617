@@ -25,7 +25,7 @@
             <div class="text-black text-center mb-3 font-bold">
               <small>Or sign in with credentials</small>
             </div>
-            <form action="http://localhost:3000/user/login" method="post">
+            <form :action="`${url}/user/login`" method="post">
               <div class="relative w-full mb-3">
                 <label
                   class="block uppercase text-white text-xs font-bold mb-2"
@@ -39,6 +39,7 @@
                   class="border-0 px-3 py-3 placeholder-white text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                   placeholder="Email"
                   id="email"
+                  name="email"
                 />
               </div>
 
@@ -55,6 +56,7 @@
                   class="border-0 px-3 py-3 placeholder-white text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                   placeholder="Password"
                   id="password"
+                  name="password"
                 />
               </div>
               <div>
@@ -118,39 +120,12 @@ export default {
     return {
       email: '', // Bound to email input
       password: '', // Bound to password input
-      //rememberMe: false, // Bound to the checkbox
+      rememberMe: false, // Bound to the checkbox
       google,
-      gitHub
+      gitHub,
+      url: import.meta.env.VITE_API_URL
     }
   },
-  methods: {
-    async login() {
-      try {
-        /* const response = await fetch('http://localhost:3000/user/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            email: this.email,
-            password: this.password
-            //rememberMe: this.rememberMe
-          }),
-          redirect: 'follow'
-        })
-
-        // Handle success, such as navigating to another route or setting user data
-        if (response.ok) {
-          alert('Login successful')
-          this.$router.push('/')
-        } else {
-          alert('Login failed')
-        } */
-      } catch (error) {
-        console.error('Login error:', error)
-        // Handle error, such as displaying a message to the user
-      }
-    }
-  }
+  methods: {}
 }
 </script>

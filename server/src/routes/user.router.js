@@ -9,12 +9,13 @@ const router = Router();
 router.post('/register', checkNotAuthenticated, UserController.createUser);
 
 router.post('/login', checkNotAuthenticated, function (req, res, next) {
-  console.log(req.body);
   passport.authenticate('local', function (err, user, info, status) {
-    console.log(err);
-    console.log(user);
-    if (err || !user) return res.redirect('/login');
-    return res.redirect('/');
+    // redirect to localhost in dev
+    let prefix = '';
+    if (req.headers.referer && req.headers.referer.includes('5173'))
+      prefix = 'http://localhost:5173';
+    if (err || !user) return res.redirect(`${prefix}/login`);
+    return res.redirect(`${prefix}/`);
   })(req, res, next);
 });
 
