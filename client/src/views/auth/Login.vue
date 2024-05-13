@@ -25,32 +25,38 @@
             <div class="text-black text-center mb-3 font-bold">
               <small>Or sign in with credentials</small>
             </div>
-            <form>
+            <form :action="`${url}/user/login`" method="post">
               <div class="relative w-full mb-3">
                 <label
-                  class="block uppercase text-black text-xs font-bold mb-2"
+                  class="block uppercase text-white text-xs font-bold mb-2"
                   htmlFor="grid-password"
                 >
                   Email
                 </label>
                 <input
+                  v-model="email"
                   type="email"
-                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  class="border-0 px-3 py-3 placeholder-white text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                   placeholder="Email"
+                  id="email"
+                  name="email"
                 />
               </div>
 
               <div class="relative w-full mb-3">
                 <label
-                  class="block uppercase text-black text-xs font-bold mb-2"
+                  class="block uppercase text-white text-xs font-bold mb-2"
                   htmlFor="grid-password"
                 >
                   Password
                 </label>
                 <input
+                  v-model="password"
                   type="password"
-                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  class="border-0 px-3 py-3 placeholder-white text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                   placeholder="Password"
+                  id="password"
+                  name="password"
                 />
               </div>
               <div>
@@ -106,15 +112,20 @@
   </div>
 </template>
 <script>
-import github from '@/assets/img/github.svg'
 import google from '@/assets/img/google.svg'
+import gitHub from '@/assets/img/github.svg'
 
 export default {
   data() {
     return {
-      github,
-      google
+      email: '', // Bound to email input
+      password: '', // Bound to password input
+      rememberMe: false, // Bound to the checkbox
+      google,
+      gitHub,
+      url: import.meta.env.VITE_API_URL
     }
-  }
+  },
+  methods: {}
 }
 </script>

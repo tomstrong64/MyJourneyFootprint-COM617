@@ -33,8 +33,9 @@
                   Name
                 </label>
                 <input
-                  type="email"
-                  class="border-0 px-3 py-3 placeholder-white text-white bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  v-model="name"
+                  type="text"
+                  class="border-0 px-3 py-3 placeholder-white text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                   placeholder="Name"
                 />
               </div>
@@ -47,8 +48,9 @@
                   Email
                 </label>
                 <input
+                  v-model="email"
                   type="email"
-                  class="border-0 px-3 py-3 placeholder-white text-white bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  class="border-0 px-3 py-3 placeholder-white text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                   placeholder="Email"
                 />
               </div>
@@ -61,8 +63,9 @@
                   Password
                 </label>
                 <input
+                  v-model="password"
                   type="password"
-                  class="border-0 px-3 py-3 placeholder-white text-white bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  class="border-0 px-3 py-3 placeholder-white text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                   placeholder="Password"
                 />
               </div>
@@ -85,6 +88,7 @@
                 <button
                   class="bg-blueGray-800 text-white active:bg-white text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                   type="button"
+                  @click="register"
                 >
                   Create Account
                 </button>
@@ -96,15 +100,44 @@
     </div>
   </div>
 </template>
+
 <script>
-import github from '@/assets/img/github.svg'
 import google from '@/assets/img/google.svg'
 
 export default {
   data() {
     return {
-      github,
+      name: '', // Added this property
+      email: '',
+      password: '',
       google
+    }
+  },
+  methods: {
+    async register() {
+      try {
+        const response = await fetch('http://localhost:3000/user/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            name: this.name,
+            email: this.email,
+            password: this.password
+          })
+        })
+
+        if (response.ok) {
+          alert('Registration successful')
+          //redirect to login
+          this.$router.push('/login')
+        } else {
+          alert('Registration failed')
+        }
+      } catch (error) {
+        console.error('Registration error:', error)
+      }
     }
   }
 }
