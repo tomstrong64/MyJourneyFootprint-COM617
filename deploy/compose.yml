@@ -29,6 +29,8 @@ services:
   app:
     image: com617.azurecr.io/com617:latest
     container_name: com617-app
+    env_file:
+      - .env
     restart: always
 
   nginx:
