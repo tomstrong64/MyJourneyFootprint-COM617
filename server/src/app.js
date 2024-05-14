@@ -16,7 +16,16 @@ dotenv.config();
 const app = express();
 
 app.use(cors());
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        imgSrc: ["'self'", 'data:', 'https://*.openstreetmap.org'],
+      },
+    },
+  })
+);
 
 app.use(logRequest);
 
@@ -44,14 +53,6 @@ app.use(IndexRouter);
 
 // Middleware for serving the vuejs frontend
 const staticFileMiddleware = express.static('src/public');
-
-app.use((req, res, next) => {
-  res.setHeader(
-    'Content-Security-Policy',
-    "default-src 'self'; img-src 'self' data: https://*.openstreetmap.org;"
-  );
-  return next();
-});
 
 // 1st call for unredirected requests
 app.use(staticFileMiddleware);
