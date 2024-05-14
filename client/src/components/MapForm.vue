@@ -1,12 +1,6 @@
 <template>
   <div>
     <div id="mapContainer"></div>
-    <div id="distanceCalc">Distance: {{ distance / 1000 }} km</div>
-    <div>
-      <button @click="clearMarkers">Clear Markers</button>
-      <button @click="calculateRoute">Calculate Route</button>
-      <button @click="clearRoute">Clear Route</button>
-    </div>
   </div>
 </template>
 

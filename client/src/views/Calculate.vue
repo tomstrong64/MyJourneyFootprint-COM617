@@ -29,7 +29,11 @@
 
           <label class="font-medium leading-6 text-white">{{ formData.selectedCategory }}</label>
 
-          <select v-model="formData.selectedSubcategory" @change="fetchFuelTypes">
+          <select
+            v-model="formData.selectedSubcategory"
+            @change="fetchFuelTypes"
+            class="block flex-1 border-0 py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 rounded"
+          >
             <option
               id="size"
               v-for="vehicle in formData.vehicles"
@@ -39,8 +43,13 @@
               {{ vehicle.vehicle_type }}
             </option>
           </select>
+          <label class="font-medium leading-6 text-white">Fuel Type</label>
 
-          <select v-model="formData.selectedFuelType" @change="fetchEmissionData">
+          <select
+            v-model="formData.selectedFuelType"
+            @change="fetchEmissionData"
+            class="block flex-1 border-0 py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 rounded"
+          >
             <option v-for="fuelType in formData.fuelTypes" :key="fuelType" :value="fuelType">
               {{ fuelType }}
             </option>
@@ -75,7 +84,13 @@
           <label for="distance" class="font-medium leading-6 text-white"
             >Journey Distance (in km):</label
           >
-          <input type="number" v-model="formData.distance" id="distance" min="0" />
+          <input
+            type="number"
+            v-model="formData.distance"
+            id="distance"
+            min="0"
+            class="block flex-1 border-0 py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 rounded"
+          />
           <div id="distanceCalc" class="font-medium leading-6 text-white" v-if="!formData.distance">
             Distance will be calculated based on map clicks.
           </div>
@@ -279,9 +294,6 @@ export default {
       this.formData.motorbikeType = ''
     },
     calculateCarbonEmission() {
-      // Add your logic to calculate carbon emission using this.formData
-      // For example, you can access this.formData.mode, this.formData.distance, etc.
-      // Perform calculations and update your application state accordingly
       console.log('Calculating carbon emission...')
       // Your emission calculation logic goes here
       if (this.formData.distance == '') {
