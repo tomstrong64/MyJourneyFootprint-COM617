@@ -18,7 +18,12 @@ const app = express();
 app.use(cors());
 app.use(
   helmet({
-    contentSecurityPolicy: false,
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        imgSrc: ["'self'", 'https://*.tile.openstreetmap.org'],
+      },
+    },
   })
 );
 
