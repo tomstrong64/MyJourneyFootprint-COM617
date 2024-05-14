@@ -94,7 +94,7 @@
                 </li>
 
                 <li>
-                  <router-link to="/">
+                  <router-link to="/policy">
                     <a class="text-white hover:text-white font-semibold block pb-2 text-sm" href="">
                       Privacy Policy
                     </a>
