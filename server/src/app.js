@@ -5,6 +5,8 @@ import history from 'connect-history-api-fallback';
 import session from 'express-session'; // Add the import statement for the session module
 import flash from 'connect-flash'; // Add the import statement for the flash module
 
+import HealthRouter from './routes/health.router.js';
+import GraphqlRouter from './routes/graphql.router.js';
 import IndexRouter from './routes/index.router.js';
 import { logRequest } from './controllers/index.controller.js';
 import passport from 'passport';
@@ -36,6 +38,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
+app.use('/health', HealthRouter);
+app.use('/graphql', GraphqlRouter);
 app.use(IndexRouter);
 
 // Middleware for serving the vuejs frontend
