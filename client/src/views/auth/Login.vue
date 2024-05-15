@@ -29,6 +29,7 @@
               <div class="relative w-full mb-3">
                 <label
                   class="block uppercasetext-xs text-black font-bold mb-2"
+                  class="block uppercasetext-xs text-black font-bold mb-2"
                   htmlFor="grid-password"
                 >
                   Email
@@ -44,7 +45,10 @@
               </div>
 
               <div class="relative w-full mb-3">
-                <label class="block uppercase text-xs font-bold mb-2" htmlFor="grid-password">
+                <label
+                  class="block uppercase text-black text-xs font-bold mb-2"
+                  htmlFor="grid-password"
+                >
                   Password
                 </label>
                 <input
