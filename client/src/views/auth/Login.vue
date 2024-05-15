@@ -29,7 +29,6 @@
               <div class="relative w-full mb-3">
                 <label
                   class="block uppercasetext-xs text-black font-bold mb-2"
-                  class="block uppercasetext-xs text-black font-bold mb-2"
                   htmlFor="grid-password"
                 >
                   Email
