@@ -1,6 +1,5 @@
 import express from 'express';
 import cors from 'cors';
-import helmet from 'helmet';
 import history from 'connect-history-api-fallback';
 import session from 'express-session'; // Add the import statement for the session module
 import flash from 'connect-flash'; // Add the import statement for the flash module
@@ -16,20 +15,6 @@ dotenv.config();
 const app = express();
 
 app.use(cors());
-app.use(
-  helmet({
-    contentSecurityPolicy: {
-      directives: {
-        defaultSrc: ["'self'"],
-        imgSrc: [
-          "'self'",
-          'https://*.tile.openstreetmap.org',
-          'https://myjourneyfootprint.uksouth.cloudapp.azure.com',
-        ],
-      },
-    },
-  })
-);
 
 app.use(logRequest);
 
