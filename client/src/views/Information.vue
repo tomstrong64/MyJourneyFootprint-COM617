@@ -1,7 +1,7 @@
 <template>
-  <header-nav-bar />
+  <header-nav-bar data-cy="header-nav-bar" />
 
-  <div class="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
+  <div class="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32" data-cy="information-component">
   <!-- Background Image -->
   <img
     src="../assets/img/footprint.png"
@@ -63,12 +63,12 @@
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
       <div class="mx-auto max-w-2xl lg:mx-0">
         <!-- Page Heading -->
-        <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+        <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl" data-cy="information-title">
           Understanding Carbon Impact & Sustainable Practices
         </h2>
 
         <!-- Page Content -->
-        <p class="mt-6 text-lg leading-8 text-gray-300">
+        <p class="mt-6 text-lg leading-8 text-gray-300" data-cy="information-paragraph">
           Carbon dioxide (CO2) emissions from human activities <br> significantly impact our environment and climate. <br> Here's
           what you need to know:
         </p>
@@ -85,7 +85,7 @@
         </div>
 
         <!-- Sustainable Practices -->
-        <div class="mt-8">
+        <div class="mt-8" data-cy="sustainable-practices-section">
           <h3 class="text-xl font-semibold text-white">Sustainable Practices to Reduce Carbon Footprint</h3>
           <ul class="list-disc list-inside mt-4 text-gray-300">
             <li>Renewable Energy</li>
@@ -99,7 +99,7 @@
         </div>
 
         <!-- Conclusion -->
-        <div class="mt-10">
+        <div class="mt-10" data-cy="conclusion-section">
           <p class="text-lg leading-8 text-gray-300">
             By understanding the impact of carbon emissions and adopting sustainable practices, we can work towards a
             healthier planet for current and future generations.
@@ -110,7 +110,7 @@
   </div>
 
   <!-- Footer Component -->
-  <footer-component />
+  <footer-component data-cy="footer-component" />
 </template>
 
 <script>
