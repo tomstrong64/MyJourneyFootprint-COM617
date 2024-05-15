@@ -6,6 +6,8 @@ import passport from 'passport';
 
 const router = Router();
 
+router.get('/', UserController.getUser);
+
 router.post('/register', checkNotAuthenticated, UserController.createUser);
 
 router.post('/login', checkNotAuthenticated, function (req, res, next) {

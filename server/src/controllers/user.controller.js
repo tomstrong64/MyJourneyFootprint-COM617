@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 import client from '../services/db.js';
+import { getUserById } from '../services/userService.js';
 
 export const createUser = async (req, res) => {
   try {
@@ -88,6 +89,18 @@ export const deleteUser = async (req, res) => {
     res.status(200).json({ message: 'User deleted successfully' });
   } catch (e) {
     console.log(e);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+export const getUser = async (req, res) => {
+  try {
+    console.log('authenticate', req.isAuthenticated());
+    console.log('req.user', req.user);
+    const user = await getUserById(req.user);
+    return res.status(200).json(user.name);
+  } catch (err) {
+    console.log(err);
     return res.status(500).json({ message: 'Internal server error' });
   }
 };

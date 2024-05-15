@@ -31,8 +31,9 @@
         </router-link>
       </PopoverGroup>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-        <a href="#" class="text-sm font-semibold leading-6 text-slate-200"
-          ><router-link to="/login">Log in</router-link> <span aria-hidden="true">&rarr;</span></a
+        <router-link to="/login">
+          <a class="text-sm font-semibold leading-6 text-slate-200">Log in</a>
+          <span aria-hidden="true">&rarr;</span></router-link
         >
       </div>
     </nav>
