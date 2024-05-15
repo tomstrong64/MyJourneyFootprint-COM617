@@ -28,7 +28,7 @@
             <form :action="`${url}/user/login`" method="post">
               <div class="relative w-full mb-3">
                 <label
-                  class="block uppercase text-white text-xs font-bold mb-2"
+                  class="block uppercasetext-xs text-black font-bold mb-2"
                   htmlFor="grid-password"
                 >
                   Email
@@ -36,7 +36,7 @@
                 <input
                   v-model="email"
                   type="email"
-                  class="border-0 px-3 py-3 placeholder-white text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  class="border-0 px-3 py-3 text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                   placeholder="Email"
                   id="email"
                   name="email"
@@ -44,16 +44,13 @@
               </div>
 
               <div class="relative w-full mb-3">
-                <label
-                  class="block uppercase text-white text-xs font-bold mb-2"
-                  htmlFor="grid-password"
-                >
+                <label class="block uppercase text-xs font-bold mb-2" htmlFor="grid-password">
                   Password
                 </label>
                 <input
                   v-model="password"
                   type="password"
-                  class="border-0 px-3 py-3 placeholder-white text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  class="border-0 px-3 py-3 text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                   placeholder="Password"
                   id="password"
                   name="password"
