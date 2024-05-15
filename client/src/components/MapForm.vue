@@ -9,7 +9,7 @@ import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
 
 export default {
-  name: 'Map',
+  name: 'MapForm',
   data() {
     return {
       center: [50.908249, -1.400638],
