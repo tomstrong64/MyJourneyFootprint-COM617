@@ -21,7 +21,11 @@ app.use(
     contentSecurityPolicy: {
       directives: {
         defaultSrc: ["'self'"],
-        imgSrc: ["'self'", 'https://*.tile.openstreetmap.org'],
+        imgSrc: [
+          "'self'",
+          'https://*.tile.openstreetmap.org',
+          'https://myjourneyfootprint.uksouth.cloudapp.azure.com',
+        ],
       },
     },
   })
