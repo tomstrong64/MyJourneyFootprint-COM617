@@ -1,14 +1,16 @@
 <template>
-  <header-nav-bar />
-  <div class="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-15">
+  <header-nav-bar data-cy="header-nav-bar" />
+  <div class="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-15" data-cy="calculate-component">
     <div
       class="max-w-screen-7xl mx-auto px-4 lg:px-8 flex flex-col sm:flex-row justify-between items-center"
+      data-cy="calculate-title"
     >
       <!-- Form -->
-      <div class="w-full sm:w-1/2 rounded-lg">
-        <form
+      <div class="w-full sm:w-1/2 rounded-lg" >
+        <form 
           @submit.prevent="submitForm"
           class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 gap-4"
+          data-cy="calculate-form"
         >
           <label for="categorySelect" class="font-medium leading-6 text-white">Travel Mode:</label>
           <select
@@ -18,6 +20,7 @@
             class="block flex-1 border-0 py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 rounded"
             placeholder=""
             required
+            data-cy="category-select"
           >
             <option value="Cars (by market segment)">Car (by Segment)</option>
             <option value="Cars (by size)">Car (by Size)</option>
@@ -98,6 +101,7 @@
           <button
             type="submit"
             class="calculate-button text-center justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            data-cy="calculate-button"
           >
             Calculate Carbon Emissions
           </button>
@@ -123,7 +127,7 @@
       </div>
     </div>
   </div>
-  <footer-component />
+  <footer-component data-cy="footer-component" />
 </template>
 
 <script>
