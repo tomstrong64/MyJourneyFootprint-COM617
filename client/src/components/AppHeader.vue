@@ -12,7 +12,7 @@
       <div class="flex lg:hidden">
         <button
           type="button"
-          class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+          class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white"
           @click="mobileMenuOpen = true"
         >
           <span class="sr-only">Open main menu</span>
@@ -23,7 +23,7 @@
         <router-link to="/calculate">
           <a class="text-sm font-semibold leading-6 text-slate-200">Calculate</a>
         </router-link>
-        <router-link to="/">
+        <router-link to="/info">
           <a class="text-sm font-semibold leading-6 text-slate-200">Information</a>
         </router-link>
         <router-link to="/">
