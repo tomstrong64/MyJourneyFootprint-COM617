@@ -13,6 +13,7 @@ import App from './App.vue'
 import Login from '@/views/auth/Login.vue'
 import Register from '@/views/auth/Register.vue'
 import Calculate from '@/views/Calculate.vue'
+import Policy from '@/views/policy.vue'
 
 import Index from '@/views/Index.vue'
 import Information from '@/views/Information.vue'
